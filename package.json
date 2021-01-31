@@ -1,0 +1,15 @@
+{
+  "name": "varvbot",
+  "version": "1.0.0",
+  "description": "A discord bot for the BGC server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Burke",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "fs": "0.0.1-security"
+  }
+}

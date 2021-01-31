@@ -1,0 +1,6 @@
+{
+    "prefix": "!",
+    "key": "api_key_here",
+    "admin_roles": ["Admin"],
+    "commands_path": "./commands" 
+}
