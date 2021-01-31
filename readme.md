@@ -1,5 +1,4 @@
-# VarvBot
-##### For Discord
+# VarvBot For Discord
 ---
 
 Table of contents: 
@@ -12,18 +11,18 @@ Table of contents:
 - [Creating New Commands](#creating-new-commands)
 ---
 
-#Introduction
+# Introduction
 Currently, VarvBot is a feature starved discord bot that can't really do much.
 
 This will be a short guide on how to use this code to run your own fork of varvbot, which you can modify to your liking.
 
 ---
 
-#Setup
+# Setup
 
 Setting up your discord bot is simple!
 
-###Discord Developer Portal
+### Discord Developer Portal
 To start, log in to discord.com, then navigate to the ['Applications' section of the discord developer portal.](https://discord.com/developers/applications) Now that you're here, simply click on the "New Application" button. Give your application a name and finish creating the application.
 
 Now, navigate to the "bot" menu on the left pane, and build yourself a bot. Now that the bot has been created, you can find the bot's Token, which will be necessary for running this bot. 
@@ -36,10 +35,10 @@ You have officially set up your discord bot's invite link! Simply copy the link 
 
 The last thing you're going to want from the developer portal is the bot's api key. In order to find this key, navigate again to the "Bot" menu on the left of the page. Just to the right of the bot's profile picture is where you'll find the token. Simply copy the token to your clipboard with the **copy** button. This will be used later in the [config](#config) section of this guide.
 
-###Node
+### Node
 Unfortunately for you, VarvBot is not super user friendly! You're going to have to set up Node.js yourself to run VarvBot! Node.js should be easy to set up if you're savvy, and if you've already got it set up then you're in luck! The only packages VarvBot uses (for now) are discord.js and fs. Running npm install _should_ install the right versions of the node packages used in this project. Let me know if things don't work!
 
-###Config
+### Config
 The last piece of setup you should have to do is create a config.json file. I've provided a config-example.json file which follows the format of what your config.json file should look like. Here's a short rundown of what each entry in the file does:
 
 -"prefix": determines the character or string used to issue a command to the bot. By default, this is !, which is a common character for chatbots, so you may want to change this. (VarvBot currently does NOT support using different prefixes on different servers)
@@ -52,12 +51,12 @@ The last piece of setup you should have to do is create a config.json file. I've
 
 You should be able to simply replace the "api_key_here" with the token you copied onto your clipboard from the discord developer portal, and then rename config-example.json to config.json.
 
-#Running the Bot
+# Running the Bot
 Once you have your config.json file set up and your node project has all packages installed, it should be as easy as typing 'node app.js' into your terminal/command prompt.
 
 If this doesn't work, then oh well! That sucks!
 
-#Creating New Commands
+# Creating New Commands
 Now that you have your own VarvBot up and running, you might have some great ideas for features you want to add. With the way VarvBot reads in his commands from the ./commands folder by default, this should be fairly simple.
 
 Whenever Varvbot sees that a new message has been sent to a server that starts with the defined command prefix, message and its contents are sent to a command handler. The command handler reads in all of the commands defined in the commands.js folder as soon as the app is started. If the command recieved by varvbot matches the name of one of the files in the commands folder, the function defined in the module.exports of said .js file will be executed.
