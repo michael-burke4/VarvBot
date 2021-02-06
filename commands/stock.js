@@ -38,7 +38,10 @@ module.exports = (msg, tokens) => {
             .setThumbnail('https://i.imgur.com/sj60vzD.png')
             .addFields(
                 {name: "Stock Price", value: `$${res.body.price.regularMarketPrice.fmt}`, inline:true},
+                {name: "Market Cap", value: res.body.price.marketCap.fmt, inline: true},
+                {name: "Average Volume (10 day)", value: res.body.price.averageDailyVolume10Day.fmt, inline: true},
                 {name: "Beta", value: res.body.defaultKeyStatistics.beta.fmt, inline:true}
+                
             );
             msg.channel.send(stockEmbed);
 
@@ -48,11 +51,9 @@ module.exports = (msg, tokens) => {
             //     msg.channel.send("Stock info could not be found! Sorry!");
             // }
             // else{
-                console.log(err);
+            console.log(err);
             // }
         }
-        
-        
     });
 
 }
