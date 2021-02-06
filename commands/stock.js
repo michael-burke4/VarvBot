@@ -31,7 +31,7 @@ module.exports = (msg, tokens) => {
         
         try{
             const stockEmbed = new MessageEmbed()
-            .setColor("087f00")
+            .setColor("5F02D2")
             .setTitle(res.body.price.longName)
             .setURL(`https://finance.yahoo.com/quote/${res.body.price.symbol}`)
             .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
