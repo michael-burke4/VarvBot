@@ -33,6 +33,7 @@ module.exports = (msg, tokens) => {
             const stockEmbed = new MessageEmbed()
             .setColor("087f00")
             .setTitle(res.body.price.longName)
+            .setURL(`https://finance.yahoo.com/quote/${res.body.price.symbol}`)
             .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
             .setThumbnail('https://i.imgur.com/sj60vzD.png')
             .addFields(
