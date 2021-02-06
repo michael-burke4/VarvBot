@@ -47,12 +47,12 @@ module.exports = (msg, tokens) => {
 
 
         }catch(err){
-            // if(err instanceof TypeError){
-            //     msg.channel.send("Stock info could not be found! Sorry!");
-            // }
-            // else{
-            console.log(err);
-            // }
+            if(err instanceof TypeError){
+                msg.channel.send("Stock info could not be found! Sorry!");
+            }
+            else{
+                console.log(err);
+            }
         }
     });
 
