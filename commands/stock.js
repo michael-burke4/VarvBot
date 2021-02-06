@@ -1,0 +1,52 @@
+const unirest = require("unirest");
+const {yahoo_key} = require("../config.json")
+const {MessageEmbed} = require('discord.js');
+
+
+module.exports = (msg, tokens) => {
+    if(msg.channel.type === 'dm'){
+        msg.channel.send("Sorry, but I will not perform this action in a DM!");
+        return;
+    }
+    if(tokens.length != 2){
+        msg.channel.send("Your command is formatted improperly!");
+        return;
+    }
+
+    let req = unirest("GET", "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary");
+
+    req.query({
+        "symbol": tokens[1],
+        "region": "US"
+    });
+    
+    req.headers({
+        "x-rapidapi-key": yahoo_key,
+        "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
+        "useQueryString": true
+    });
+
+    req.end((res) => {
+        if (res.error) throw new Error(res.error);
+        
+        try{
+            const stockEmbed = new MessageEmbed()
+            .setColor("087f00")
+            .setTitle(res.body.price.longName)
+            .setDescription(res.body.summaryProfile.longBusinessSummary.substring(0, 150) + "...");
+            msg.channel.send(stockEmbed);
+
+
+        }catch(err){
+            // if(err instanceof TypeError){
+            //     msg.channel.send("Stock info could not be found! Sorry!");
+            // }
+            // else{
+                console.log(err);
+            // }
+        }
+        
+        
+    });
+
+}
