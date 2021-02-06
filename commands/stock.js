@@ -33,7 +33,12 @@ module.exports = (msg, tokens) => {
             const stockEmbed = new MessageEmbed()
             .setColor("087f00")
             .setTitle(res.body.price.longName)
-            .setDescription(res.body.summaryProfile.longBusinessSummary.substring(0, 150) + "...");
+            .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
+            .setThumbnail(`https://i.imgur.com/62owFcC.png`)
+            .addFields(
+                {name: "Stock Price", value: `$${res.body.price.regularMarketPrice.fmt}`, inline:true},
+                {name: "Beta", value: res.body.defaultKeyStatistics.beta.fmt, inline:true}
+            );
             msg.channel.send(stockEmbed);
 
 
