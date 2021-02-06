@@ -34,7 +34,7 @@ module.exports = (msg, tokens) => {
             .setColor("087f00")
             .setTitle(res.body.price.longName)
             .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
-            .setThumbnail(`https://i.imgur.com/62owFcC.png`)
+            .setThumbnail('https://i.imgur.com/sj60vzD.png')
             .addFields(
                 {name: "Stock Price", value: `$${res.body.price.regularMarketPrice.fmt}`, inline:true},
                 {name: "Beta", value: res.body.defaultKeyStatistics.beta.fmt, inline:true}
