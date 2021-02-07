@@ -2,5 +2,6 @@
     "prefix": "!",
     "key": "api_key_here",
     "admin_roles": ["Admin"],
-    "commands_path": "./commands" 
+    "commands_path": "./commands",
+    "yahoo_key": "api_key_here"
 }

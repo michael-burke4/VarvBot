@@ -5,14 +5,14 @@ module.exports = (msg) => {
     let str = "";
     str += "```md\n";
     str += "+ Varvbot has numerous exciting features such as...\n";
-    str += '<ping   = "pong!">\n';
-    str += '<joke   = "enjoy one of VarvBot\'s numerous hilarious jokes!">\n';
-    str += '<roll n = "rolls a dice with n sides!">\n';
-    str += '<ball   = "Wanna ball?">\n';
-    str += '<flip   = "Flip a coin!">\n';
-    str += '<help   = "help!">\n';
-    
-
+    str += '<ping           = "pong!">\n';
+    str += '<joke           = "enjoy one of VarvBot\'s numerous hilarious jokes!">\n';
+    str += '<roll n         = "rolls a dice with n sides!">\n';
+    str += '<ball           = "Wanna ball?">\n';
+    str += '<flip           = "Flip a coin!">\n';
+    str += '<stock (symbol) = "Gives information on the stock specified by the given symbol!">\n';
+    str += '<help           = "help!">\n';
     str += "```";
+    
     msg.channel.send(str);
 }
