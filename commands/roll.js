@@ -1,20 +1,15 @@
+//Rolls a die with n sides
 module.exports = (msg, tokens) => {
-
-    let elements = msg.content.split(' ');
-    
-    //!roll command requires exactly 2 tokens
-    if(tokens.length == 2){
-        let sides = parseInt(tokens[1]);
-
-        //if the second token isn't a number or is less than 1 it is formatted improperly
-        if(isNaN(sides) || sides < 1){
-            msg.channel.send('Formatted improperly! Try again!');
-        }
-        else{
-            msg.channel.send('You rolled a ' + Math.ceil(Math.random() * sides) + '!');
-        }
-    }
-    else{
+    if (tokens.length != 2) {
         msg.channel.send('Formatted improperly! Try again!');
+        return;
     }
+
+    let sides = parseInt(tokens[1]);
+    if (isNaN(sides) || sides < 1) {
+        msg.channel.send('Formatted improperly! Try again!');
+        return;
+    }
+
+    msg.channel.send('You rolled a ' + Math.ceil(Math.random() * sides) + '!');
 }

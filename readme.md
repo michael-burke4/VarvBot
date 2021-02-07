@@ -4,9 +4,9 @@
 Table of contents: 
 - [Introduction](#introduction)
 - [Setup](#setup)
-  - [Discord Developer Portal](#discord-developer-portal)
-  - [Node.js](#node)
-  - [Config](#config)
+    - [Discord Developer Portal](#discord-developer-portal)
+    - [Node](#node)
+    - [Config](#config)
 - [Running the Bot](#running-the-bot)
 - [Creating New Commands](#creating-new-commands)
 ---
@@ -36,7 +36,7 @@ You have officially set up your discord bot's invite link! Simply copy the link 
 The last thing you're going to want from the developer portal is the bot's api key. In order to find this key, navigate again to the "Bot" menu on the left of the page. Just to the right of the bot's profile picture is where you'll find the token. Simply copy the token to your clipboard with the **copy** button. This will be used later in the [config](#config) section of this guide.
 
 ### Node
-Unfortunately for you, VarvBot is not super user friendly! You're going to have to set up Node.js yourself to run VarvBot! Node.js should be easy to set up if you're savvy, and if you've already got it set up then you're in luck! The only packages VarvBot uses (for now) are discord.js and fs. Running npm install _should_ install the right versions of the node packages used in this project. Let me know if things don't work!
+Unfortunately for you, VarvBot is not super user friendly! You're going to have to set up Node.js yourself to run VarvBot! Node.js should be easy to set up if you're savvy, and if you've already got it set up then you're in luck! The only packages VarvBot uses (for now) are discord.js, fs, and unirest. Running npm install _should_ install the right versions of the node packages used in this project. Let me know if things don't work!
 
 ### Config
 The last piece of setup you should have to do is create a config.json file. I've provided a config-example.json file which follows the format of what your config.json file should look like. Here's a short rundown of what each entry in the file does:
@@ -48,6 +48,8 @@ The last piece of setup you should have to do is create a config.json file. I've
 -"admin_roles": as of right now, these roles don't do anything. The plan is to allow certain bot commands only to be obeyed if the user calling the command has one of these roles in the discord server. For example, if there were to be a '!ban [user]' command, VarvBot would only ban this user if the person that typed in '!ban [user]' has the **admin** role.
 
 -"commands_path": VarvBot works by reading in all of the .js files found within the commands folder. You can customize the name/location of this commands folder by changing this variable. I would reccommend _not changing this_ and following the provided format.
+
+-"yahoo_key": Varvbot can use the yahoo finance api to find and present stock information. In order to use this api yourself, you'll need to get an api key from here: https://rapidapi.com/apidojo/api/yahoo-finance1/. If you don't feel like doing this, just delete the stock.js file from the commands folder and everything should be fine. 
 
 You should be able to simply replace the "api_key_here" with the token you copied onto your clipboard from the discord developer portal, and then rename config-example.json to config.json.
 

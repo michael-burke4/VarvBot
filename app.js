@@ -15,7 +15,7 @@ client.on('ready', () => {
 //handles all of the logic whenever a message is recieved.
 //if the message starts with I'm/I am/Im it does the classic dad joke
 //if the message starts with the prefix defined in config.json it tries to execute the specified command
-client.on('message', (message) =>{
+client.on('message', (message) => {
     imjoke(message);
     commandHandler(message, client);
 });
