@@ -30,6 +30,8 @@ module.exports = (msg, tokens) => {
         if (res.error) throw new Error(res.error);
         
         try{
+            let currencySymbol = res.body.price.currencySymbol;
+
             const stockEmbed = new MessageEmbed()
             .setColor("5F02D2")
             .setTitle(res.body.price.longName)
@@ -37,10 +39,12 @@ module.exports = (msg, tokens) => {
             .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
             .setThumbnail('https://i.imgur.com/sj60vzD.png')
             .addFields(
-                {name: "Stock Price", value: `$${res.body.price.regularMarketPrice.fmt}`, inline:true},
-                {name: "Market Cap", value: res.body.price.marketCap.fmt, inline: true},
+                {name: "Stock Price", value: `${currencySymbol}${res.body.price.regularMarketPrice.fmt}`, inline:true},
+                {name: "Regular Market Change", value: res.body.price.regularMarketChangePercent.fmt, inline:true},
+                {name: "Market Cap", value: `${currencySymbol}${res.body.price.marketCap.fmt}`, inline: true},
                 {name: "Average Volume (10 day)", value: res.body.price.averageDailyVolume10Day.fmt, inline: true},
-                {name: "Beta", value: res.body.defaultKeyStatistics.beta.fmt, inline:true}
+                {name: "Beta", value: res.body.defaultKeyStatistics.beta.fmt, inline:true},
+                
                 
             );
             msg.channel.send(stockEmbed);
