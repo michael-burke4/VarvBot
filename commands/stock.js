@@ -4,6 +4,7 @@ const { MessageEmbed } = require("discord.js");
 
 
 module.exports = (msg, tokens) => {
+    //not going to let people use this feature in dms
     if (msg.channel.type === 'dm') {
         msg.channel.send("Sorry, but I will not perform this action in a DM!");
         return;
@@ -33,13 +34,14 @@ module.exports = (msg, tokens) => {
 
         try {
             const currencySymbol = res.body.price.currencySymbol;
+            const logoURL = "https://i.imgur.com/sj60vzD.png";
 
             const stockEmbed = new MessageEmbed()
                 .setColor("5F02D2")
                 .setTitle(res.body.price.longName)
                 .setURL(`https://finance.yahoo.com/quote/${res.body.price.symbol}`)
                 .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
-                .setThumbnail("https://i.imgur.com/sj60vzD.png")
+                .setThumbnail(logoURL)
                 .addFields(
                     { name: "Stock Price", value: `${currencySymbol}${res.body.price.regularMarketPrice.fmt}`, inline: true },
                     { name: "Regular Market Change", value: res.body.price.regularMarketChangePercent.fmt, inline: true },
