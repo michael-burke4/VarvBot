@@ -17,10 +17,10 @@ module.exports = (msg, tokens) => {
         return;
     }
 
-    const languageFrom = tokens[1];
-    const languageTo = tokens[2];
+    const languageFrom = tokens[1].toLowerCase();
+    const languageTo = tokens[2].toLowerCase();
     //if varvbot doesn't recognize the given language(s), don't bother with an api call, tell the user about it.
-    if (!(languages.includes(languageTo) && languages.includes(languageFrom))) {
+    if (!(languages.hasOwnProperty(languageTo) && languages.hasOwnProperty(languageFrom))) {
         msg.channel.send("One or more of the languages you've chosen is unsupported, try again!");
         return;
     }
@@ -47,10 +47,11 @@ module.exports = (msg, tokens) => {
         "useQueryString": true
     });
 
+
     req.form({
         "q": sourceString,
-        "source": languageFrom,
-        "target": languageTo
+        "source": languages[languageFrom],
+        "target": languages[languageTo]
     });
 
     req.end(function (res) {
@@ -62,7 +63,7 @@ module.exports = (msg, tokens) => {
 
         const translateEmbed = new MessageEmbed()
             .setColor("377DF2")
-            .setTitle(`Translation from ${languageFrom} to ${languageTo}`)
+            .setTitle(`Translation from ${tokens[1]} to ${tokens[2]}`)
             .setThumbnail(logoURL)
             .addField("Source Message", sourceString, false)
             .addField("Translated Message", translatedText, false);
