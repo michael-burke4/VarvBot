@@ -12,7 +12,6 @@ module.exports = (msg) => {
     str += '<flip                           = "Flip a coin!">\n';
     str += '<love (name) (name)             = "Find out your love score!">\n';
     str += '<stock (symbol)                 = "Gives information on the stock specified by the given symbol!">\n';
-    str += '<translate (l1) (l2) (msg)      = "Translates a message from language 1 to language 2!">\n';
     str += '<help                           = "help!">\n';
     str += "```";
     
