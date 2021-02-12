@@ -6,6 +6,7 @@ const { MessageEmbed } = require("discord.js");
 
 
 module.exports = (msg, tokens) => {
+    //!love command requires 3 tokens, (!love), (name1), and (name2)
     if (tokens.length != 3) {
         msg.channel.send("Your command is formatted improperly!\nPlease use 'love (name) (name)'");
         return;
@@ -28,21 +29,22 @@ module.exports = (msg, tokens) => {
     req.end(function (res) {
         if (res.error) throw new Error(res.error);
 
+        //half a heart img if the love percent is under 50%
         let heart_img = "https://ih1.redbubble.net/image.1328908604.1387/st,small,507x507-pad,600x600,f8f8f8.jpg";
-        if(parseInt(res.body.percentage) > 50){
+        if (parseInt(res.body.percentage) > 50) {
+            //full heart img if the love percent is above 50%
             heart_img = "https://www.nicepng.com/png/detail/896-8968612_minecraft-heart-minecraft-health-bar-png.png";
         }
 
         const loveRating = new MessageEmbed()
-                .setColor("FF69B4")
-                .setTitle(`Love calculator for ${tokens[1]} and ${tokens[2]}`)
-                .setThumbnail(heart_img)
-                .addFields(
-                    { name: "Love Level", value: res.body.percentage, inline: true },
-                    { name: "Love Rating", value: res.body.result, inline: true },
-                );
-            msg.channel.send(loveRating);
+            .setColor("FF69B4")
+            .setTitle(`Love calculator for ${tokens[1]} and ${tokens[2]}`)
+            .setThumbnail(heart_img)
+            .addFields(
+                { name: "Love Level", value: res.body.percentage, inline: true },
+                { name: "Love Rating", value: res.body.result, inline: true },
+            );
+        msg.channel.send(loveRating);
     });
-
 
 }
