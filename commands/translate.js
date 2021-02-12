@@ -1,12 +1,12 @@
 
 const unirest = require("unirest");
 const { rapid_api_key } = require("../config.json");
-const {languages} = require("../data.json");
+const { languages } = require("../data.json");
 
 
 module.exports = (msg, tokens) => {
     //The msg string is going to need at least 4 tokens to be formatted properly.
-    if(tokens.length < 4){
+    if (tokens.length < 4) {
         msg.channel.send("Message formatted improperly! Try again! (use !help for guidance)");
         return;
     }
@@ -14,7 +14,7 @@ module.exports = (msg, tokens) => {
     const languageFrom = tokens[1];
     const languageTo = tokens[2];
     //if varvbot doesn't recognize the given language(s), don't bother with an api call, tell the user about it.
-    if(!(languages.includes(languageTo) && languages.includes(languageFrom))){
+    if (!(languages.includes(languageTo) && languages.includes(languageFrom))) {
         msg.channel.send("One or more of the languages you've chosen is unsupported, try again!");
         return;
     }
@@ -23,7 +23,7 @@ module.exports = (msg, tokens) => {
     const openParenIndex = msg.content.search(/\(/g);
     const closeParenIndex = msg.content.search(/\)/g);
     //open paren has to be left of the close paren.
-    if(!(openParenIndex + 1 < closeParenIndex)){
+    if (openParenIndex == -1 || closeParenIndex == -1 || !(openParenIndex + 1 < closeParenIndex)) {
         msg.channel.send("Message formatted improperly! Try again! (use !help for guidance)");
         return;
     }
@@ -43,13 +43,15 @@ module.exports = (msg, tokens) => {
 
     req.form({
         "q": sourceString,
-        "source": "en",
-        "target": "es"
+        "source": languageFrom,
+        "target": languageTo
     });
 
     req.end(function (res) {
         if (res.error) throw new Error(res.error);
 
+
+        const logoURL = "https://i.imgur.com/MBTWOxC.png";
         const translatedText = res.body.data.translations[0].translatedText;
 
         msg.channel.send(translatedText);
