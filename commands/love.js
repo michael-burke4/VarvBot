@@ -1,7 +1,7 @@
 //simple 'wanna ball' command
 
 const unirest = require("unirest");
-const { love_key } = require("../config.json")
+const { rapid_api_key } = require("../config.json")
 const { MessageEmbed } = require('discord.js');
 
 
@@ -19,7 +19,7 @@ module.exports = (msg, tokens) => {
     });
 
     req.headers({
-        "x-rapidapi-key": love_key,
+        "x-rapidapi-key": rapid_api_key,
         "x-rapidapi-host": "love-calculator.p.rapidapi.com",
         "useQueryString": true
     });

@@ -1,5 +1,5 @@
 const unirest = require("unirest");
-const { yahoo_key } = require("../config.json")
+const { rapid_api_key } = require("../config.json")
 const { MessageEmbed } = require('discord.js');
 
 
@@ -19,7 +19,7 @@ module.exports = (msg, tokens) => {
         "region": "US"
     });
     req.headers({
-        "x-rapidapi-key": yahoo_key,
+        "x-rapidapi-key": rapid_api_key,
         "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
         "useQueryString": true
     });
