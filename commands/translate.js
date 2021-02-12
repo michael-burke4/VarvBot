@@ -5,6 +5,12 @@ const { languages } = require("../data.json");
 const { MessageEmbed, Message } = require("discord.js");
 
 module.exports = (msg, tokens) => {
+    //not going to let people use this feature in dms
+    if (msg.channel.type === 'dm') {
+        msg.channel.send("Sorry, but I will not perform this action in a DM!");
+        return;
+    }
+
     //The msg string is going to need at least 4 tokens to be formatted properly.
     if (tokens.length < 4) {
         msg.channel.send("Message formatted improperly! Try again! (use !help for guidance)");
@@ -60,7 +66,6 @@ module.exports = (msg, tokens) => {
             .setThumbnail(logoURL)
             .addField("Source Message", sourceString, false)
             .addField("Translated Message", translatedText, false);
-
 
         msg.channel.send(translateEmbed);
     });
