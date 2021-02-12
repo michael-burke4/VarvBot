@@ -27,7 +27,7 @@ module.exports = (msg, tokens) => {
     req.end((res) => {
         if (res.error) {
             console.log(res.eror);
-            msg.channel.send('Encountered unexpected error. Try again later. Sorry!');
+            msg.channel.send("Encountered unexpected error. Try again later. Sorry!");
             return;
         }
 
@@ -39,7 +39,7 @@ module.exports = (msg, tokens) => {
                 .setTitle(res.body.price.longName)
                 .setURL(`https://finance.yahoo.com/quote/${res.body.price.symbol}`)
                 .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
-                .setThumbnail('https://i.imgur.com/sj60vzD.png')
+                .setThumbnail("https://i.imgur.com/sj60vzD.png")
                 .addFields(
                     { name: "Stock Price", value: `${currencySymbol}${res.body.price.regularMarketPrice.fmt}`, inline: true },
                     { name: "Regular Market Change", value: res.body.price.regularMarketChangePercent.fmt, inline: true },
@@ -50,6 +50,7 @@ module.exports = (msg, tokens) => {
             msg.channel.send(stockEmbed);
         } catch (err) {
             if (err instanceof TypeError) {
+                console.log(err);
                 msg.channel.send("Stock info could not be found! Sorry!");
             }
             else {
