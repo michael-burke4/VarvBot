@@ -2,7 +2,7 @@
 const unirest = require("unirest");
 const { rapid_api_key } = require("../config.json");
 const { languages } = require("../data.json");
-
+const { MessageEmbed, Message } = require("discord.js");
 
 module.exports = (msg, tokens) => {
     //The msg string is going to need at least 4 tokens to be formatted properly.
@@ -54,6 +54,14 @@ module.exports = (msg, tokens) => {
         const logoURL = "https://i.imgur.com/MBTWOxC.png";
         const translatedText = res.body.data.translations[0].translatedText;
 
-        msg.channel.send(translatedText);
+        const translateEmbed = new MessageEmbed()
+            .setColor("377DF2")
+            .setTitle(`Translation from ${languageFrom} to ${languageTo}`)
+            .setThumbnail(logoURL)
+            .addField("Source Message", sourceString, false)
+            .addField("Translated Message", translatedText, false);
+
+
+        msg.channel.send(translateEmbed);
     });
 }
