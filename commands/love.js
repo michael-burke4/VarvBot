@@ -33,22 +33,13 @@ module.exports = (msg, tokens) => {
             heart_img = 'https://www.nicepng.com/png/detail/896-8968612_minecraft-heart-minecraft-health-bar-png.png';
         }
 
-        // console.log(res.body);
-        // msg.reply(res.body.percentage);
-
         const loveRating = new MessageEmbed()
                 .setColor("FF69B4")
-                // .setTitle(res.body.price.longName)
-                // .setURL(`https://finance.yahoo.com/quote/${res.body.price.symbol}`)
                 .setTitle(`Love Calulator for `+tokens[1]+' and '+tokens[2])
                 .setThumbnail(heart_img)
                 .addFields(
                     { name: "Love Level", value: res.body.percentage, inline: true },
                     { name: "Love Rating", value: res.body.result, inline: true },
-                    // { name: "Regular Market Change", value: res.body.price.regularMarketChangePercent.fmt, inline: true },
-                    // { name: "Market Cap", value: `${currencySymbol}${res.body.price.marketCap.fmt}`, inline: true },
-                    // { name: "Average Volume (10 day)", value: res.body.price.averageDailyVolume10Day.fmt, inline: true },
-                    // { name: "Beta", value: res.body.defaultKeyStatistics.beta.fmt, inline: true },
                 );
             msg.channel.send(loveRating);
     });
