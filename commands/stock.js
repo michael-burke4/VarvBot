@@ -1,6 +1,6 @@
 const unirest = require("unirest");
 const { rapid_api_key } = require("../config.json")
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require("discord.js");
 
 
 module.exports = (msg, tokens) => {
@@ -13,7 +13,7 @@ module.exports = (msg, tokens) => {
         return;
     }
 
-    let req = unirest("GET", "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary");
+    const req = unirest("GET", "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary");
     req.query({
         "symbol": tokens[1],
         "region": "US"
@@ -32,7 +32,7 @@ module.exports = (msg, tokens) => {
         }
 
         try {
-            let currencySymbol = res.body.price.currencySymbol;
+            const currencySymbol = res.body.price.currencySymbol;
 
             const stockEmbed = new MessageEmbed()
                 .setColor("5F02D2")

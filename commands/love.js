@@ -11,7 +11,7 @@ module.exports = (msg, tokens) => {
         return;
     }
 
-    var req = unirest("GET", "https://love-calculator.p.rapidapi.com/getPercentage");
+    const req = unirest("GET", "https://love-calculator.p.rapidapi.com/getPercentage");
 
     req.query({
         "fname": tokens[1],
@@ -35,7 +35,7 @@ module.exports = (msg, tokens) => {
 
         const loveRating = new MessageEmbed()
                 .setColor("FF69B4")
-                .setTitle("Love Calulator for "+tokens[1]+" and "+tokens[2])
+                .setTitle(`Love calculator for ${tokens[1]} and ${tokens[2]}`)
                 .setThumbnail(heart_img)
                 .addFields(
                     { name: "Love Level", value: res.body.percentage, inline: true },

@@ -5,11 +5,11 @@ module.exports = (msg, tokens) => {
         return;
     }
 
-    let sides = parseInt(tokens[1]);
+    const sides = parseInt(tokens[1]);
     if (isNaN(sides) || sides < 1) {
         msg.channel.send('Formatted improperly! Try again!');
         return;
     }
 
-    msg.channel.send('You rolled a ' + Math.ceil(Math.random() * sides) + '!');
+    msg.channel.send(`You rolled a ${Math.ceil(Math.random() * sides)}!`);
 }

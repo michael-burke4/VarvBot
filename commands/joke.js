@@ -1,4 +1,4 @@
-let fs = require('fs');
+let fs = require("fs");
 let rawData = fs.readFileSync("data.json");
 
 //varvbot is simply too funny
