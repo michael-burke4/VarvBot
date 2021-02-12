@@ -29,7 +29,7 @@ module.exports = (msg, tokens) => {
         if (res.error) throw new Error(res.error);
 
         var heart_img = "https://ih1.redbubble.net/image.1328908604.1387/st,small,507x507-pad,600x600,f8f8f8.jpg";
-        if(res.percentage > 50){
+        if(parseInt(res.body.percentage) > 50){
             heart_img = 'https://www.nicepng.com/png/detail/896-8968612_minecraft-heart-minecraft-health-bar-png.png';
         }
 
