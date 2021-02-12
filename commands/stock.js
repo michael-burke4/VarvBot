@@ -1,5 +1,5 @@
 const unirest = require("unirest");
-const { rapid_api_key } = require("../config.json")
+const { rapid_api_key } = require("../config.json");
 const { MessageEmbed } = require("discord.js");
 
 
