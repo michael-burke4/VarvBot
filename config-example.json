@@ -3,5 +3,6 @@
     "key": "api_key_here",
     "admin_roles": ["Admin"],
     "commands_path": "./commands",
-    "yahoo_key": "api_key_here"
+    "yahoo_key": "api_key_here",
+    "love_key": "api_key_here"
 }
