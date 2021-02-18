@@ -11,7 +11,6 @@ module.exports = (msg, tokens) =>{
     //coins like 'bitcoin cash' need to be caught as well, every token after !crypto is turned into
     //a single block with spaced replaced by -'s.
     const coinString = msg.content.toLowerCase().substr(cmdLen).replace(/\ /g, "-");
-    console.log(coinString);
 
     const address = `https://api.coingecko.com/api/v3/coins/${coinString}`;
 
@@ -28,13 +27,18 @@ module.exports = (msg, tokens) =>{
             return;
         }
         const coinEmbed = new MessageEmbed()
+                .setTitle(res.body.name)
                 .setColor("FCBA03")
                 // .setTitle(res.body.price.longName)
                 // .setURL(`https://finance.yahoo.com/quote/${res.body.price.symbol}`)
                 // .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
                 .setThumbnail(res.body.image.small)
                 .addFields(
-                    { name: "Current Price", value: `$${res.body.market_data.current_price.usd}`, inline: true });
+                    { name: "Current Price", value: `$${res.body.market_data.current_price.usd}`, inline: false },
+                    { name: "All Time High", value: `$${res.body.market_data.ath.usd}`, inline: false },
+                    { name: "24 Hour High", value: `$${res.body.market_data.high_24h.usd}`, inline: false },
+                    { name: "24 Hour Low" , value: `$${res.body.market_data.low_24h.usd}` , inline: false }
+                    );
         msg.channel.send(coinEmbed);
 
     });
