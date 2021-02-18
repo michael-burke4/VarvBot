@@ -34,10 +34,11 @@ module.exports = (msg, tokens) =>{
                 // .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
                 .setThumbnail(res.body.image.small)
                 .addFields(
-                    { name: "Current Price", value: `$${res.body.market_data.current_price.usd}`, inline: false },
-                    { name: "All Time High", value: `$${res.body.market_data.ath.usd}`, inline: false },
-                    { name: "24 Hour High", value: `$${res.body.market_data.high_24h.usd}`, inline: false },
-                    { name: "24 Hour Low" , value: `$${res.body.market_data.low_24h.usd}` , inline: false }
+                    { name: "Current Price", value: `$${res.body.market_data.current_price.usd}`, inline: true },
+                    { name: "All Time High", value: `$${res.body.market_data.ath.usd}`, inline: true },
+                    { name: "All Time Low",  value: `$${res.body.market_data.atl.usd}`, inline: true },
+                    { name: "24 Hour High", value: `$${res.body.market_data.high_24h.usd}`, inline: true },
+                    { name: "24 Hour Low" , value: `$${res.body.market_data.low_24h.usd}` , inline: true }
                     );
         msg.channel.send(coinEmbed);
 
