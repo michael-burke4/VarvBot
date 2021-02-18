@@ -2,8 +2,9 @@ const unirest = require("unirest");
 const { MessageEmbed } = require("discord.js");
 
 
-module.exports = (msg, tokens) =>{
-    if(tokens.length < 2){
+module.exports = (msg, tokens) => {
+    //must be at least 2 tokens!
+    if (tokens.length < 2) {
         msg.channel.send("Formatted improperly, try again!");
         return;
     }
@@ -12,12 +13,12 @@ module.exports = (msg, tokens) =>{
     //a single block with spaced replaced by -'s.
     const coinString = msg.content.toLowerCase().substr(cmdLen).replace(/\ /g, "-");
 
+    //this api doesn't need a key! Very cool.
     const address = `https://api.coingecko.com/api/v3/coins/${coinString}`;
 
     const req = unirest("GET", address);
-
     req.headers({
-        "accept": "application/json" 
+        "accept": "application/json"
     });
 
     req.end((res) => {
@@ -27,20 +28,16 @@ module.exports = (msg, tokens) =>{
             return;
         }
         const coinEmbed = new MessageEmbed()
-                .setTitle(res.body.name)
-                .setColor("FCBA03")
-                // .setTitle(res.body.price.longName)
-                // .setURL(`https://finance.yahoo.com/quote/${res.body.price.symbol}`)
-                // .setDescription(`${res.body.summaryProfile.longBusinessSummary.substring(0, 175)}...`)
-                .setThumbnail(res.body.image.small)
-                .addFields(
-                    { name: "Current Price", value: `$${res.body.market_data.current_price.usd}`, inline: true },
-                    { name: "All Time High", value: `$${res.body.market_data.ath.usd}`, inline: true },
-                    { name: "All Time Low",  value: `$${res.body.market_data.atl.usd}`, inline: true },
-                    { name: "24 Hour High", value: `$${res.body.market_data.high_24h.usd}`, inline: true },
-                    { name: "24 Hour Low" , value: `$${res.body.market_data.low_24h.usd}` , inline: true }
-                    );
+            .setTitle(res.body.name)
+            .setColor("FCBA03")
+            .setThumbnail(res.body.image.small)
+            .addFields(
+                { name: "Current Price", value: `$${res.body.market_data.current_price.usd}`, inline: true },
+                { name: "All Time High", value: `$${res.body.market_data.ath.usd}`, inline: true },
+                { name: "All Time Low", value: `$${res.body.market_data.atl.usd}`, inline: true },
+                { name: "24 Hour High", value: `$${res.body.market_data.high_24h.usd}`, inline: true },
+                { name: "24 Hour Low", value: `$${res.body.market_data.low_24h.usd}`, inline: true }
+            );
         msg.channel.send(coinEmbed);
-
     });
 }
