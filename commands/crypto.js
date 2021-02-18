@@ -23,7 +23,7 @@ module.exports = (msg, tokens) => {
 
     req.end((res) => {
         if (res.error) {
-            console.log(res.eror);
+            console.log(res.error);
             msg.channel.send("Encountered unexpected error. Try again later. Sorry!");
             return;
         }
