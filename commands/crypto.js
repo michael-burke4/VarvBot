@@ -1,6 +1,6 @@
+//Allows the user to request some market data concerning a cryptocurrency 
 const unirest = require("unirest");
 const { MessageEmbed } = require("discord.js");
-
 
 module.exports = (msg, tokens) => {
     //must be at least 2 tokens!
@@ -8,6 +8,7 @@ module.exports = (msg, tokens) => {
         msg.channel.send("Formatted improperly, try again!");
         return;
     }
+    //it looks a little wacky, but its better than a magic number
     const cmdLen = "!crypto ".length;
     //coins like 'bitcoin cash' need to be caught as well, every token after !crypto is turned into
     //a single block with spaced replaced by -'s.

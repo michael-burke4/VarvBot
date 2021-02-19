@@ -1,3 +1,4 @@
+//Provides a bunch of data based off of a provided stock ticker. Uses the yahoo finance api on rapidapi.
 const unirest = require("unirest");
 const { rapid_api_key } = require("../config.json");
 const { MessageEmbed } = require("discord.js");
@@ -34,6 +35,7 @@ module.exports = (msg, tokens) => {
 
         try {
             const currencySymbol = res.body.price.currencySymbol;
+            //varvbot finance logo.
             const logoURL = "https://i.imgur.com/sj60vzD.png";
 
             const stockEmbed = new MessageEmbed()
