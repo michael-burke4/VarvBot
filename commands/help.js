@@ -12,6 +12,7 @@ module.exports = (msg) => {
     str += '<flip                           = "Flip a coin!">\n';
     str += '<love (name) (name)             = "Find out your love score!">\n';
     str += '<stock (symbol)                 = "Gives information on the stock specified by the given symbol!">\n';
+    str += '<clean (x)                      = "Removes the past x messages from the text channel the command is called in!">\n';
     str += '<help                           = "help!">\n';
     str += "```";
     
