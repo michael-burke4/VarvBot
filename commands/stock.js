@@ -49,7 +49,7 @@ module.exports = (msg, tokens) => {
                     { name: "Regular Market Change", value: res.body.price.regularMarketChangePercent.fmt, inline: true },
                     { name: "Market Cap", value: `${currencySymbol}${res.body.price.marketCap.fmt}`, inline: true },
                     { name: "Average Volume (10 day)", value: res.body.price.averageDailyVolume10Day.fmt, inline: true },
-                    { name: "Beta", value: res.body.defaultKeyStatistics.beta.fmt, inline: true },
+                    { name: "Beta", value: res.body.defaultKeyStatistics.beta.fmt, inline: true }
                 );
             msg.channel.send(stockEmbed);
         } catch (err) {
