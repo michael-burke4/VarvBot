@@ -23,7 +23,7 @@ This will be a short guide on how to use this code to run your own fork of varvb
 Setting up your discord bot is simple!
 
 ### Discord Developer Portal
-To start, log in to discord.com, then navigate to the ['Applications' section of the discord developer portal.](https://discord.com/developers/applications) Now that you're here, simply click on the "New Application" button. Give your application a name and finish creating the application.
+To start, log in to discord.com and navigate to the ['Applications' section of the discord developer portal.](https://discord.com/developers/applications) Now that you're here, simply click on the "New Application" button. Give your application a name and finish creating the application.
 
 Now, navigate to the "bot" menu on the left pane, and build yourself a bot. Now that the bot has been created, you can find the bot's Token, which will be necessary for running this bot. 
 
@@ -49,7 +49,7 @@ The last piece of setup you should have to do is create a config.json file. I've
 
 -"commands_path": VarvBot works by reading in all of the .js files found within the commands folder. You can customize the name/location of this commands folder by changing this variable. I would reccommend _not changing this_ and following the provided format.
 
--"yahoo_key": Varvbot can use the yahoo finance api to find and present stock information. In order to use this api yourself, you'll need to get an api key from here: https://rapidapi.com/apidojo/api/yahoo-finance1/. If you don't feel like doing this, just delete the stock.js file from the commands folder and everything should be fine. 
+-"rapid_api_key": Varvbot uses rapid api for the love calculator and stock functions. In order to use these apis yourself, you'll need to get an api key from here: https://rapidapi.com/apidojo/api/yahoo-finance1/. If you don't feel like doing this, just delete the stock.js and love.js files from the commands folder and everything should be fine. RapidAPI uses the same key for all of its different apis, so the yahoo finance and love calculator apis work with just the rapi_api_key.
 
 You should be able to simply replace the "api_key_here" with the token you copied onto your clipboard from the discord developer portal, and then rename config-example.json to config.json.
 
