@@ -30,12 +30,8 @@ module.exports = (msg, client) => {
         //if you want a space to be part of the prefix, though, make sure it is set up like that in config.json!!!!
         const command = tokens[0].substring(prefix.length);
         console.log("Recieved command: " + command);
-        try {
-            commands[command](msg, tokens, client);
-        }
-        //currently logging any unrecognized commands as errors. This is ugly and I might want to change it later.
-        catch (error) {
-            console.log(error);
-        }
+        
+        commands[command]?.(msg, tokens, client);
+        
     }
 }
