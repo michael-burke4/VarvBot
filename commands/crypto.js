@@ -11,9 +11,10 @@ module.exports = (msg, tokens) => {
     }
     
     
-    //coins like 'bitcoin cash' need to be caught as well, every token after !crypto is turned into
-    //a single block with spaced replaced by -'s.
-    const coinString = msg.content.toLowerCase().substr(prefix.length + "crypto ".length).replace(/\ /g, "-"); //gross
+    //coins like 'bitcoin cash' need to be caught as well, every token after ${prefix}crypto is turned into
+    //a single block with spaces replaced by -'s.
+    const strippedMessage = msg.content.toLowerCase().substr(prefix.length + "crypto ".length); 
+    const coinString = strippedMessage.replace(/\ /g, "-"); 
     console.log("Coin string: " + coinString);
     console.table(tokens);
 
