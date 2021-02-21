@@ -5,7 +5,8 @@ const { MessageEmbed } = require("discord.js");
 
 
 module.exports = (msg, tokens) => {
-    //not going to let people use this feature in dms
+    //yahoo finance uses a freemium plan, so I want to be able to tell when people are spamming 
+    //the stock command.
     if (msg.channel.type === 'dm') {
         msg.channel.send("Sorry, but I will not perform this action in a DM!");
         return;
@@ -28,7 +29,7 @@ module.exports = (msg, tokens) => {
 
     req.end((res) => {
         if (res.error) {
-            console.log(res.eror);
+            console.log(res.error);
             msg.channel.send("Encountered unexpected error. Try again later. Sorry!");
             return;
         }

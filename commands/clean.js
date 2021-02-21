@@ -5,18 +5,15 @@ const { admin_roles } = require("../config.json");
 
 module.exports = async (msg, tokens) => {
     let allowed = false;
-    //msg.member.roles.cache is a collection with a bunch of data I don't care about
     const rolesCollection = msg.member.roles.cache;
     //turn the collection into an array, iterate over it searching to see if any role matches an admin_role.
     for (let role of rolesCollection.array()) {
         if (admin_roles.includes(role.name)) {
-            //we've found a valid admin role, allow the command to happen and break out early.
             allowed = true;
             break;
         }
     }
 
-    // check if !clean caller has permission
     if (!allowed) {
         msg.channel.send("You are not authorized to use this command!");
         return;
