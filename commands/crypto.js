@@ -14,8 +14,6 @@ module.exports = (msg, tokens) => {
     //a single block with spaces replaced by -'s.
     const strippedMessage = msg.content.toLowerCase().substr(prefix.length + "crypto ".length);
     const coinString = strippedMessage.replace(/\ /g, "-");
-    console.log("Coin string: " + coinString);
-    console.table(tokens);
 
     //this api doesn't need a key! Very cool.
     const address = `https://api.coingecko.com/api/v3/coins/${coinString}`;
