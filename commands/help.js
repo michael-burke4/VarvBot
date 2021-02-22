@@ -15,6 +15,6 @@ module.exports = (msg) => {
     str += '<clean (x)                      = "Removes the past x messages from the text channel the command is called in!">\n';
     str += '<help                           = "help!">\n';
     str += "```";
-    
+
     msg.channel.send(str);
 }

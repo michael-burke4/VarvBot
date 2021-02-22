@@ -31,9 +31,9 @@ module.exports = (msg, tokens) => {
 
         const fullHeartURL = "https://ih1.redbubble.net/image.1328908604.1387/st,small,507x507-pad,600x600,f8f8f8.jpg";
         const halfHeartURL = "https://www.nicepng.com/png/detail/896-8968612_minecraft-heart-minecraft-health-bar-png.png";
-        
-        const heart_img = parseInt(res.body.percentage) < 50 ? fullHeartURL : halfHeartURL; 
-            
+
+        const heart_img = parseInt(res.body.percentage) < 50 ? fullHeartURL : halfHeartURL;
+
 
         const loveRating = new MessageEmbed()
             .setColor("FF69B4")

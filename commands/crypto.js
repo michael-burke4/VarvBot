@@ -4,17 +4,16 @@ const { MessageEmbed } = require("discord.js");
 const { prefix } = require("../config.json");
 
 module.exports = (msg, tokens) => {
-    //must be at least 2 tokens!
     if (tokens.length < 2) {
         msg.channel.send("Formatted improperly, try again!");
         return;
     }
-    
-    
+
+
     //coins like 'bitcoin cash' need to be caught as well, every token after ${prefix}crypto is turned into
     //a single block with spaces replaced by -'s.
-    const strippedMessage = msg.content.toLowerCase().substr(prefix.length + "crypto ".length); 
-    const coinString = strippedMessage.replace(/\ /g, "-"); 
+    const strippedMessage = msg.content.toLowerCase().substr(prefix.length + "crypto ".length);
+    const coinString = strippedMessage.replace(/\ /g, "-");
     console.log("Coin string: " + coinString);
     console.table(tokens);
 
