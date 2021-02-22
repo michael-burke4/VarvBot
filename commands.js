@@ -20,7 +20,7 @@ const prefix = config.prefix;
 
 
 module.exports = (msg, client) => {
-    if(!msg.content.startsWith(prefix)){ return; }
+    if (!msg.content.startsWith(prefix)) { return; }
 
     //varvbot supports a standard message prefix like '!', as well as more complex
     //strings like 'bot '. The latter example would fall apart if we were to naively

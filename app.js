@@ -11,7 +11,6 @@ client.on("ready", () => {
     console.log(`logged in as ${client.user.tag}`);
 });
 
-//handles all of the logic whenever a message is recieved.
 client.on("message", (message) => {
     if (config.options.enableImJoke) {
         imjoke(message, client);

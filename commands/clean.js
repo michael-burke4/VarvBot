@@ -19,13 +19,11 @@ module.exports = async (msg, tokens) => {
         return;
     }
 
-    //!clean formatting check
     if (tokens.length != 2) {
         msg.channel.send("Improperly formatted !clean request!");
         return;
     }
 
-    //Positive number check
     let numToDelete = parseInt(tokens[1]);
     if (isNaN(numToDelete) || numToDelete < 0) {
         msg.channel.send("Invalid removal amount!");
@@ -36,9 +34,6 @@ module.exports = async (msg, tokens) => {
         let fetched = await msg.channel.messages.fetch({ limit: numToDelete + 1 });
         msg.channel.bulkDelete(fetched);
     } catch (error) {
-        //currently doesn't differentiate between not being able to delete a message because its too old,
-        //not being able to delete a msg because he doesn't have message management permissions, just sends a
-        //generic 'could not delete' message.
         console.log(error);
         msg.channel.send("Could not delete messages!");
     }
