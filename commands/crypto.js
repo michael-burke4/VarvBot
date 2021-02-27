@@ -1,18 +1,19 @@
 //Allows the user to request some market data concerning a cryptocurrency 
 const unirest = require("unirest");
 const { MessageEmbed } = require("discord.js");
+const { prefix } = require("../config.json");
 
 module.exports = (msg, tokens) => {
-    //must be at least 2 tokens!
     if (tokens.length < 2) {
         msg.channel.send("Formatted improperly, try again!");
         return;
     }
-    //it looks a little wacky, but its better than a magic number
-    const cmdLen = "!crypto ".length;
-    //coins like 'bitcoin cash' need to be caught as well, every token after !crypto is turned into
-    //a single block with spaced replaced by -'s.
-    const coinString = msg.content.toLowerCase().substr(cmdLen).replace(/\ /g, "-");
+
+
+    //coins like 'bitcoin cash' need to be caught as well, every token after ${prefix}crypto is turned into
+    //a single block with spaces replaced by -'s.
+    const strippedMessage = msg.content.toLowerCase().substr(prefix.length + "crypto ".length);
+    const coinString = strippedMessage.replace(/\ /g, "-");
 
     //this api doesn't need a key! Very cool.
     const address = `https://api.coingecko.com/api/v3/coins/${coinString}`;
