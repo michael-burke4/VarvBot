@@ -5,6 +5,7 @@
     "commands_path": "./commands",
     "rapid_api_key": "api_key_here",
     "options": {
-        "enableImJoke": true
+        "enableImJoke": true,
+        "enableChickenButt": true
     }
 }
