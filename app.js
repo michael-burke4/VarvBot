@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require("./config.json");
 const commandHandler = require("./commands.js");
 const imjoke = require("./imjoke.js");
-const ChickenButt = require("./ChickenButt.js")
+const chickenButt = require("./chickenbutt.js")
 
 
 const client = new Discord.Client();
@@ -17,8 +17,8 @@ client.on("message", (message) => {
         imjoke(message, client);
     }
 
-    if(config.options.ChickenButt){
-        ChickenButt(message,client);
+    if(config.options.enableChickenButt){
+        chickenButt(message,client);
     }
     
     commandHandler(message, client);
