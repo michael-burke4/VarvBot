@@ -29,5 +29,7 @@ module.exports = (msg, client) => {
     const tokens = msg.content.substring(prefix.length).split(" ");
     const command = tokens[0];
 
-    commands[command]?.(msg, tokens, client);
+    if(commands[command]){
+        commands[command](msg, tokens, client);
+    }
 }
