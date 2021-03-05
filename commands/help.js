@@ -14,6 +14,7 @@ module.exports = (msg) => {
     str += '<stock (symbol)                 = "Gives information on the stock specified by the given symbol!">\n';
     str += '<clean (x)                      = "Removes the past x messages from the text channel the command is called in!">\n';
     str += '<help                           = "help!">\n';
+    str += '<fortnite                       = "epicly pwn someone in your voice channel with the default dance song!>\n';
     str += "```";
 
     msg.channel.send(str);
