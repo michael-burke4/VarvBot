@@ -1,6 +1,6 @@
 //Provides a bunch of data based off of a provided stock ticker. Uses the yahoo finance api on rapidapi.
 const unirest = require("unirest");
-const { rapid_api_key } = require("../config.json");
+const rapid_api_key  = process.env.RAPID_API_KEY;
 const { MessageEmbed } = require("discord.js");
 
 

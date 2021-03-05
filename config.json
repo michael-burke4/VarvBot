@@ -1,9 +1,7 @@
 {
     "prefix": "!",
-    "key": "api_key_here",
-    "admin_roles": ["Admin"],
+    "admin_roles": ["Power", "Temp-Admin"],
     "commands_path": "./commands",
-    "rapid_api_key": "api_key_here",
     "options": {
         "enableImJoke": true,
         "enableChickenButt": true
