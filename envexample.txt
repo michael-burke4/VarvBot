@@ -1,0 +1,2 @@
+BOT_KEY=YourBotKeyHereWithNoQuotes
+RAPID_API_KEY=YourApiKeyHereWithNoQuotes
