@@ -3,6 +3,7 @@ const config = require("./config.json");
 const commandHandler = require("./commands.js");
 const imjoke = require("./imjoke.js");
 const chickenButt = require("./chickenbutt.js");
+const atSomeone = require("./atsomeone.js");
 require("dotenv").config();
 
 
@@ -14,6 +15,17 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
+    
+
+    // for(const member in message.channel.guild.members.cache.array()){
+        
+    //     console.log(member);
+    // }
+    if(message.content.toLowerCase() == "@someone"){
+        atSomeone(message);
+
+    }
+    
     if (config.options.enableImJoke) {
         imjoke(message, client);
     }
