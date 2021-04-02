@@ -21,9 +21,8 @@ client.on("message", (message) => {
         
     //     console.log(member);
     // }
-    if(message.content.toLowerCase() == "@someone"){
+    if(message.content.includes("@someone")){
         atSomeone(message);
-
     }
     
     if (config.options.enableImJoke) {
