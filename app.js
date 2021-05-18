@@ -16,11 +16,6 @@ client.on("ready", () => {
 
 client.on("message", (message) => {
     
-
-    // for(const member in message.channel.guild.members.cache.array()){
-        
-    //     console.log(member);
-    // }
     if(message.content.includes("@someone")){
         atSomeone(message);
     }
