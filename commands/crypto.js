@@ -36,7 +36,6 @@ module.exports = (msg, tokens) => {
             .addFields(
                 { name: "Current Price", value: `$${res.body.market_data.current_price.usd}`, inline: true },
                 { name: "All Time High", value: `$${res.body.market_data.ath.usd}`, inline: true },
-                { name: "All Time Low", value: `$${res.body.market_data.atl.usd}`, inline: true },
                 { name: "24 Hour High", value: `$${res.body.market_data.high_24h.usd}`, inline: true },
                 { name: "24 Hour Low", value: `$${res.body.market_data.low_24h.usd}`, inline: true }
             );
