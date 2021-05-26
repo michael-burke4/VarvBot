@@ -20,7 +20,10 @@ const prefix = config.prefix;
 
 
 module.exports = (msg, client) => {
-
+    if(!prefix) {
+        console.log("no prefix set in config.json! Check out the readme!");
+        process.exit();
+    }
     if (!msg.content.startsWith(prefix)) { return; }
 
     //varvbot supports a standard message prefix like '!', as well as more complex
