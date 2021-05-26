@@ -4,6 +4,7 @@ const commandHandler = require("./commands.js");
 const imjoke = require("./imjoke.js");
 const chickenButt = require("./chickenbutt.js");
 const atSomeone = require("./atsomeone.js");
+const emojiVote = require("./emojivote.js");
 require("dotenv").config();
 
 
@@ -28,8 +29,8 @@ client.on("message", (message) => {
         chickenButt(message,client);
     }
 
-    if(message.channel.name === "emoji-submission"){
-        
+    if(message.channel.name === "emoji-submission" && message.attachments.size == 1){
+        emojiVote(message);
     }
     
     commandHandler(message, client);
