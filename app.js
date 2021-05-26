@@ -27,6 +27,10 @@ client.on("message", (message) => {
     if(config.options.enableChickenButt){
         chickenButt(message,client);
     }
+
+    if(message.channel.name === "emoji-submission"){
+        
+    }
     
     commandHandler(message, client);
 });
