@@ -8,7 +8,8 @@ const emojiVote = require("./emojivote.js");
 require("dotenv").config();
 
 
-const client = new Discord.Client();
+let client = new Discord.Client();
+client.emojiVoteActive = false;
 const key = process.env.BOT_KEY;
 
 client.on("ready", () => {
@@ -29,8 +30,8 @@ client.on("message", (message) => {
         chickenButt(message,client);
     }
 
-    if(message.channel.name === "emoji-submission" && message.attachments.size == 1){
-        emojiVote(message);
+    if(!client.emojiVoteActive && message.channel.name === "emoji-submission" && message.attachments.size == 1){
+        emojiVote(message, client);
     }
     
     commandHandler(message, client);
