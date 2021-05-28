@@ -30,6 +30,12 @@ client.on("message", (message) => {
         chickenButt(message,client);
     }
 
+
+    if(client.emojiVoteActive && message.channel.name === "emoji-submission" && message.author.id != "370738893903101954" ){
+        message.delete();
+        message.author.send("There is currently an active emoji vote, please wait to send any messages");
+    }
+
     if(!client.emojiVoteActive && message.channel.name === "emoji-submission" && message.attachments.size == 1){
         emojiVote(message, client);
     }
