@@ -36,7 +36,6 @@ client.on("message", (message) => {
     // }
 
     if(message.channel.name === "emoji-submission"){
-        console.log("Is there an active vote? "  + client.emojiVoteActive);
         emojiVote(message, client);
     }
     
