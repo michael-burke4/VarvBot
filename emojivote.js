@@ -23,6 +23,7 @@ module.exports = async (msg, client) => {
     msg.react("❌");
     msg.channel.send("@everyone do your civic duty and vote on this submission!");
 
+    //using setTimeout here FEELS horrible
     setTimeout(async () => {
         let checks = msg.reactions.cache.find(emoji => emoji.emoji.name == '✅').count - 1;
         let xs = msg.reactions.cache.find(emoji => emoji.emoji.name == '❌').count - 1;
@@ -34,10 +35,13 @@ module.exports = async (msg, client) => {
 
             setTimeout(async () => {
                 let removeVoteMessage = [... await msg.channel.messages.fetch({ limit: 1 })][0];
-                // console.log(removeVoteMessage);
                 let emojiCache = removeVoteMessage[1].reactions.cache;
-                console.log(emojiCache);
-                
+                emojiCache.forEach(element => {
+                    console.log(element._emoji.id);
+                    const serverEmoji = client.emojis.cache.get(element._emoji.id)
+                    msg.channel.send(`<:${serverEmoji.name}:${serverEmoji.id}>`);
+                    // msg.channel.send(client.emojis.cache.get(element._emoji.id));
+                });
                 msg.channel.send("The vote is complete!");
                 client.emojiVoteActive = false;
             }, vote_interval);
@@ -48,3 +52,4 @@ module.exports = async (msg, client) => {
         }
     }, vote_interval);
 }
+
