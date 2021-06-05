@@ -34,14 +34,15 @@ module.exports = async (msg, client) => {
             msg.channel.send("@everyone React to THIS message with the emoji you'd like to see removed!");
 
             setTimeout(async () => {
+
                 let removeVoteMessage = [... await msg.channel.messages.fetch({ limit: 1 })][0];
                 let emojiCache = removeVoteMessage[1].reactions.cache;
-                emojiCache.forEach(element => {
-                    console.log(element._emoji.id);
-                    const serverEmoji = client.emojis.cache.get(element._emoji.id)
-                    msg.channel.send(`<:${serverEmoji.name}:${serverEmoji.id}>`);
-                    // msg.channel.send(client.emojis.cache.get(element._emoji.id));
-                });
+                findMostCommonReactions(emojiCache);
+                // emojiCache.forEach(element => {
+                //     const serverEmoji = client.emojis.cache.get(element._emoji.id)
+                //     msg.channel.send(`<:${serverEmoji.name}:${serverEmoji.id}>`);
+                //     // msg.channel.send(client.emojis.cache.get(element._emoji.id));
+                // });
                 msg.channel.send("The vote is complete!");
                 client.emojiVoteActive = false;
             }, vote_interval);
@@ -53,3 +54,8 @@ module.exports = async (msg, client) => {
     }, vote_interval);
 }
 
+function findMostCommonReactions(emojiCache) {
+    emojiCache.forEach( element => {
+        console.log(element._emoji.id);
+    });
+}
