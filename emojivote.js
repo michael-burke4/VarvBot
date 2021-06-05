@@ -29,21 +29,24 @@ module.exports = async (msg, client) => {
         let xs = msg.reactions.cache.find(emoji => emoji.emoji.name == '❌').count - 1;
         let passed = xs + checks > 5 && checks > (2 / 3) * (xs + checks)
 
-        if (checks > xs) {
+        if (checks > xs + checks * (2/3) && checks + xs > 4) {
             msg.channel.send(`${msg.author}'s submission has passed with ${checks} ✅ votes and ${xs} ❌ votes!`);
             msg.channel.send("@everyone React to THIS message with the emoji you'd like to see removed!");
 
             setTimeout(async () => {
 
-                let removeVoteMessage = [... await msg.channel.messages.fetch({ limit: 1 })][0];
-                let emojiCache = removeVoteMessage[1].reactions.cache;
-                findMostCommonReactions(emojiCache);
-                // emojiCache.forEach(element => {
-                //     const serverEmoji = client.emojis.cache.get(element._emoji.id)
-                //     msg.channel.send(`<:${serverEmoji.name}:${serverEmoji.id}>`);
-                //     // msg.channel.send(client.emojis.cache.get(element._emoji.id));
-                // });
-                msg.channel.send("The vote is complete!");
+                const removeVoteMessage = [... await msg.channel.messages.fetch({ limit: 1 })][0];
+                const emojiCache = removeVoteMessage[1].reactions.cache;
+                const mostCommonArray = findMostCommonReactions(emojiCache);
+                const idToDelete = randElement(mostCommonArray);
+                
+                console.log(idToDelete);
+                const emojiToDelete = client.emojis.cache.get(idToDelete)
+                if(mostCommonArray.length > 1) {
+                    msg.channel.send("There is a tie! A loser will be randomly chosen!");
+                }
+                msg.channel.send(`The vote is complete! <:${emojiToDelete.name}:${emojiToDelete.id}> will be replaced!`);
+
                 client.emojiVoteActive = false;
             }, vote_interval);
         }
@@ -55,7 +58,24 @@ module.exports = async (msg, client) => {
 }
 
 function findMostCommonReactions(emojiCache) {
-    emojiCache.forEach( element => {
-        console.log(element._emoji.id);
+    let mostCommon = [];
+    let commonestMagnitude = 0;
+    emojiCache.forEach(element => {
+        if (element._emoji.id != null) {
+            
+            if (element.count > commonestMagnitude) {
+                mostCommon = [];
+                mostCommon.push(element._emoji.id);
+                commonestMagnitude = element.count;
+            }
+            else if (element.count == commonestMagnitude) {
+                mostCommon.push(element._emoji.id);
+            }
+        }
     });
+    return mostCommon;
+}
+
+function randElement(array) {
+    return array[Math.floor(array.length * Math.random())];
 }
