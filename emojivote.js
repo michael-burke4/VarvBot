@@ -1,7 +1,7 @@
 const DAY_IN_MS = 86400000;
 const TEN_SEC = 10000;
 
-const vote_interval = TEN_SEC;
+const vote_interval = DAY_IN_MS;
 
 module.exports = async (msg, client) => {
     if (msg.author.id == "370738893903101954") {
