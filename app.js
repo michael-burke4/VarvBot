@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
-const commandHandler = require("./commandhandler.js");
+const interactionHandler = require("./interactionhandler.js");
 const imjoke = require("./imjoke.js");
 const chickenButt = require("./chickenbutt.js");
 const atSomeone = require("./atsomeone.js");
@@ -28,7 +28,7 @@ client.on("message", (message) => {
         chickenButt(message,client);
     }
     
-    commandHandler(message, client);
+    interactionHandler(message, client);
 });
 
 client.login(key);
