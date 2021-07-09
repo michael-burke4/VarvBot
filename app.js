@@ -9,7 +9,7 @@ require("dotenv").config();
 
 
 let client = new Discord.Client();
-client.emojiVoteActive = false;
+// client.emojiVoteActive = false;
 const key = process.env.BOT_KEY;
 
 client.on("ready", () => {

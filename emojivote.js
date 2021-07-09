@@ -1,13 +1,13 @@
 const DAY_IN_MS = 86400000;
-
-const vote_interval = DAY_IN_MS;
+const TWENTY_SEC_IN_MS = 10000;
+const vote_interval = TWENTY_SEC_IN_MS;
 
 module.exports = async (msg, client) => {
     if (msg.author.id == "370738893903101954") {
         return;
     }
 
-    if (client.emojiVoteActive) {
+    if (client.activeEmojiVote) {
         msg.delete();
         msg.author.send("There is currently an active emoji vote, please wait to send any messages!");
         return;
@@ -17,19 +17,19 @@ module.exports = async (msg, client) => {
         return;
     }
 
-    client.emojiVoteActive = true;
+    // client.emojiVoteActive = true;
     msg.react("✅");
     msg.react("❌");
     msg.channel.send("@everyone do your civic duty and vote on this submission!");
 
     //using setTimeout here FEELS horrible
-    setTimeout(async () => {
+    client.activeEmojiVote = setTimeout(async () => {
         let checks = msg.reactions.cache.find(emoji => emoji.emoji.name == '✅').count - 1;
         let xs = msg.reactions.cache.find(emoji => emoji.emoji.name == '❌').count - 1;
         let passed = xs + checks > 5 && checks > (2 / 3) * (xs + checks)
 
         if (client.emojiVoteActive && checks > xs + checks * (2 / 3) && checks + xs > 4) {
-            msg.channel.send(`${msg.author}'s submission has passed with ${checks} ✅ votes and ${xs} ❌ votes!`);
+            msg.channel.send(`${msg.author}'s submission has passed with ${checks} ✅ ${checks == 1 ? "vote" : "votes"} and ${xs} ❌ ${xs == 1 ? "vote" : "votes"}!`);
             msg.channel.send("@everyone React to THIS message with the emoji you'd like to see removed!");
 
             setTimeout(async () => {
@@ -45,13 +45,13 @@ module.exports = async (msg, client) => {
                     }
                     msg.channel.send(`The vote is complete! <:${emojiToDelete.name}:${emojiToDelete.id}> will be replaced!`);
 
-                    client.emojiVoteActive = false;
+                    client.emojiVoteActive = null;
                 }
             }, vote_interval);
         }
         else {
-            msg.channel.send(`${msg.author}'s submission has NOT passed! The submission recieved ${checks} ✅ votes and ${xs} ❌ votes!`);
-            client.emojiVoteActive = false;
+            msg.channel.send(`${msg.author}'s submission has NOT passed! The submission recieved ${checks} ✅ ${checks == 1 ? "vote" : "votes"} and ${xs} ❌ ${xs == 1 ? "vote" : "votes"}!`);
+            client.emojiVoteActive = null;
         }
     }, vote_interval);
 }
