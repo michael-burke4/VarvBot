@@ -1,5 +1,4 @@
 const DAY_IN_MS = 86400000;
-const TEN_SEC = 10000;
 
 const vote_interval = DAY_IN_MS;
 
@@ -29,24 +28,25 @@ module.exports = async (msg, client) => {
         let xs = msg.reactions.cache.find(emoji => emoji.emoji.name == '❌').count - 1;
         let passed = xs + checks > 5 && checks > (2 / 3) * (xs + checks)
 
-        if (checks > xs + checks * (2 / 3) && checks + xs > 4) {
+        if (client.emojiVoteActive && checks > xs + checks * (2 / 3) && checks + xs > 4) {
             msg.channel.send(`${msg.author}'s submission has passed with ${checks} ✅ votes and ${xs} ❌ votes!`);
             msg.channel.send("@everyone React to THIS message with the emoji you'd like to see removed!");
 
             setTimeout(async () => {
+                if (client.emojiVoteActive) {
+                    const removeVoteMessage = [... await msg.channel.messages.fetch({ limit: 1 })][0];
+                    const emojiCache = removeVoteMessage[1].reactions.cache;
+                    const mostCommonArray = findMostCommonReactions(emojiCache);
+                    const idToDelete = randElement(mostCommonArray);
 
-                const removeVoteMessage = [... await msg.channel.messages.fetch({ limit: 1 })][0];
-                const emojiCache = removeVoteMessage[1].reactions.cache;
-                const mostCommonArray = findMostCommonReactions(emojiCache);
-                const idToDelete = randElement(mostCommonArray);
+                    const emojiToDelete = client.emojis.cache.get(idToDelete)
+                    if (mostCommonArray.length > 1) {
+                        msg.channel.send("There is a tie! A loser will be randomly chosen!");
+                    }
+                    msg.channel.send(`The vote is complete! <:${emojiToDelete.name}:${emojiToDelete.id}> will be replaced!`);
 
-                const emojiToDelete = client.emojis.cache.get(idToDelete)
-                if (mostCommonArray.length > 1) {
-                    msg.channel.send("There is a tie! A loser will be randomly chosen!");
+                    client.emojiVoteActive = false;
                 }
-                msg.channel.send(`The vote is complete! <:${emojiToDelete.name}:${emojiToDelete.id}> will be replaced!`);
-
-                client.emojiVoteActive = false;
             }, vote_interval);
         }
         else {
