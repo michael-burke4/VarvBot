@@ -1,9 +1,9 @@
 const fs = require("fs");
 const config = require("./config.json");
-const imjoke = require("./imjoke.js");
-const chickenButt = require("./chickenbutt.js");
-const atSomeone = require("./atsomeone.js");
-const hardlyKnowHer = require("./ihardlyknowher.js");
+const imjoke = require("./interactions/imjoke.js");
+const chickenButt = require("./interactions/chickenbutt.js");
+const atSomeone = require("./interactions/atsomeone.js");
+const hardlyKnowHer = require("./interactions/ihardlyknowher.js");
 const { Message } = require("discord.js");
 
 const commandPath = config.commands_path;
