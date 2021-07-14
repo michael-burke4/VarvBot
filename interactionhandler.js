@@ -3,6 +3,9 @@ const config = require("./config.json");
 const imjoke = require("./imjoke.js");
 const chickenButt = require("./chickenbutt.js");
 const atSomeone = require("./atsomeone.js");
+const hardlyKnowHer = require("./ihardlyknowher.js");
+const { Message } = require("discord.js");
+
 const commandPath = config.commands_path;
 const commands = {};
 
@@ -37,6 +40,10 @@ module.exports = (msg, client) => {
 
     if (config.options.enableChickenButt) {
         chickenButt(msg, client);
+    }
+
+    if(!msg.author.bot) {
+        hardlyKnowHer(msg);
     }
 
     if (!msg.content.startsWith(prefix)) { return; }
