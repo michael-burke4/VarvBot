@@ -1,5 +1,7 @@
 const Discord = require("discord.js");
+
 const interactionHandler = require("./interactionhandler.js");
+
 require("dotenv").config();
 
 
@@ -11,7 +13,9 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
+
     interactionHandler(message, client);
+
 });
 
 client.login(key);
