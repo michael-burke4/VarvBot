@@ -1,11 +1,7 @@
 const Discord = require("discord.js");
-const config = require("./config.json");
-const commandHandler = require("./commands.js");
-const imjoke = require("./imjoke.js");
-const chickenButt = require("./chickenbutt.js");
-const hardlyKnowHer = require("./ihardlyknowher.js");
-const atSomeone = require("./atsomeone.js");
-const ihardlyknowher = require("./ihardlyknowher.js");
+
+const interactionHandler = require("./interactionhandler.js");
+
 require("dotenv").config();
 
 
@@ -18,24 +14,8 @@ client.on("ready", () => {
 
 client.on("message", (message) => {
 
-    if (message.content.includes("@someone")) {
-        atSomeone(message);
-    }
+    interactionHandler(message, client);
 
-    if (config.options.enableImJoke) {
-        imjoke(message, client);
-    }
-
-    if (config.options.enableChickenButt) {
-        chickenButt(message, client);
-    }
-
-    if(!message.author.bot ) {
-        ihardlyknowher(message, client);
-    }
-    
-
-    commandHandler(message, client);
 });
 
 client.login(key);
