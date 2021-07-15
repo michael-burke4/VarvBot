@@ -1,5 +1,10 @@
 const fs = require("fs");
 const config = require("./config.json");
+const imjoke = require("./interactions/imjoke.js");
+const chickenButt = require("./interactions/chickenbutt.js");
+const atSomeone = require("./interactions/atsomeone.js");
+const hardlyKnowHer = require("./interactions/ihardlyknowher.js");
+const { Message } = require("discord.js");
 
 const commandPath = config.commands_path;
 const commands = {};
@@ -20,10 +25,25 @@ const prefix = config.prefix;
 
 
 module.exports = (msg, client) => {
-    if(!prefix) {
+    if (!prefix) {
         console.log("no prefix set in config.json! Check out the readme!");
         process.exit();
     }
+
+    if (msg.content.includes("@someone")) {
+        atSomeone(msg);
+    }
+
+    if (config.options.enableImJoke) {
+        imjoke(msg, client);
+    }
+
+    if (config.options.enableChickenButt) {
+        chickenButt(msg, client);
+    }
+
+    hardlyKnowHer(msg);
+
     if (!msg.content.startsWith(prefix)) { return; }
 
     //varvbot supports a standard message prefix like '!', as well as more complex
