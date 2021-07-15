@@ -42,9 +42,7 @@ module.exports = (msg, client) => {
         chickenButt(msg, client);
     }
 
-    if (!msg.author.bot) {
-        hardlyKnowHer(msg);
-    }
+    hardlyKnowHer(msg);
 
     if (!msg.content.startsWith(prefix)) { return; }
 

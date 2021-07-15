@@ -1,16 +1,24 @@
 function getLastWordStripped(string) {
     let endString = '';
-    let lastWordArray = string.substring(string.lastIndexOf(' ') + 1);
-    lastWordArray.match(/\w+/g).forEach(str => endString += str);
+    let lastWord = string.substring(string.lastIndexOf(' ') + 1);
+    // console.log(lastWordArray);
+    if(lastWord.length < 4) {
+        return null;
+    }
+    lastWord.match(/\w+/g).forEach(str => endString += str);
+    if(endString.length < 4) {
+        return null;
+    }
     return endString;
 }
 
 module.exports = (msg) => {
-    if (msg.content.length <= 2) {
+    const lastWord = getLastWordStripped(msg.content);
+    
+    if(lastWord == null) {
         return;
     }
 
-    const lastWord = getLastWordStripped(msg.content);
     if (lastWord.endsWith("er")) {
         msg.channel.send(`${lastWord.substring(0, lastWord.length - 2)} her? I hardly know her!`);
     }
