@@ -1,11 +1,13 @@
 const Discord = require("discord.js");
 
+
 const interactionHandler = require("./interactionhandler.js");
 
 require("dotenv").config();
 
 
-const client = new Discord.Client();
+let client = new Discord.Client();
+// client.emojiVoteActive = false;
 const key = process.env.BOT_KEY;
 
 client.on("ready", () => {
