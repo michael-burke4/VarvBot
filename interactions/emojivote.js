@@ -1,10 +1,11 @@
 const DAY_IN_MS = 86400000;
 const TWENTY_SEC_IN_MS = 20000;
 const vote_interval = DAY_IN_MS;
+const VARVBOT_ID = "370738893903101954";
 
 module.exports = async (msg, client) => {
 
-    if (msg.channel.name != "emoji-submission" || msg.author.id == "370738893903101954") {
+    if (msg.channel.name != "emoji-submission" || msg.author.id == VARVBOT_ID) {
         console.log('returned');
         return;
     }
