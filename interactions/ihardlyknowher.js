@@ -6,6 +6,11 @@ function getLastWordStripped(string) {
 }
 
 module.exports = (msg) => {
+    if (msg.content.length <= 2) {
+        return;
+    }
+    console.log(msg.content);
+
     const lastWord = getLastWordStripped(msg.content);
     if (lastWord.endsWith("er")) {
         msg.channel.send(`${lastWord.substring(0, lastWord.length - 2)} her? I hardly know her!`);
