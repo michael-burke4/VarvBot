@@ -4,6 +4,7 @@ const imjoke = require("./interactions/imjoke.js");
 const chickenButt = require("./interactions/chickenbutt.js");
 const atSomeone = require("./interactions/atsomeone.js");
 const hardlyKnowHer = require("./interactions/ihardlyknowher.js");
+const emojivote = require("./interactions/emojivote.js");
 const { Message } = require("discord.js");
 
 const commandPath = config.commands_path;
@@ -29,6 +30,8 @@ module.exports = (msg, client) => {
         console.log("no prefix set in config.json! Check out the readme!");
         process.exit();
     }
+
+    emojivote(msg, client);
 
     if (msg.content.includes("@someone")) {
         atSomeone(msg);

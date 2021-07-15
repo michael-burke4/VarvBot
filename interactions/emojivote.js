@@ -1,9 +1,11 @@
 const DAY_IN_MS = 86400000;
 const TWENTY_SEC_IN_MS = 20000;
-const vote_interval = TWENTY_SEC_IN_MS;
+const vote_interval = DAY_IN_MS;
 
 module.exports = async (msg, client) => {
-    if (msg.author.id == "370738893903101954") {
+
+    if (msg.channel.name != "emoji-submission" || msg.author.id == "370738893903101954") {
+        console.log('returned');
         return;
     }
 
