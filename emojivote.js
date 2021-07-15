@@ -1,5 +1,5 @@
 const DAY_IN_MS = 86400000;
-const TWENTY_SEC_IN_MS = 10000;
+const TWENTY_SEC_IN_MS = 20000;
 const vote_interval = TWENTY_SEC_IN_MS;
 
 module.exports = async (msg, client) => {

@@ -1,3 +1,5 @@
+const { admin_roles } = require("../config.json");
+
 module.exports = (msg, tokens, client) => {
 
     //gross long line sorry
