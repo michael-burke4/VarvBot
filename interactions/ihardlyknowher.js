@@ -5,7 +5,8 @@ function getLastWordStripped(string) {
     if(lastWord.length < 4) {
         return null;
     }
-    lastWord.match(/\w+/g).forEach(str => endString += str);
+    let matches = lastWord.match(/\w+/g);
+    matches?.forEach(str => endString += str);
     if(endString.length < 4) {
         return null;
     }
