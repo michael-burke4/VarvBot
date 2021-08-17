@@ -30,6 +30,7 @@ fs.readdir(interactionPath, (err, files) => {
     }
 });
 
+fs.close();
 
 
 const prefix = config.prefix;
