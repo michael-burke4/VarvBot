@@ -1,4 +1,5 @@
-//simple function
+const config = require("../config.json");
+
 //if the message starts with some variant of I am, followed by some string "...", varvbot will respond by saying
 // Hi "...", I'm VarvBot!
 module.exports = (msg, client) => {

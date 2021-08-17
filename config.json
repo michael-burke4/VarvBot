@@ -2,8 +2,5 @@
     "prefix": "!",
     "admin_roles": ["Power", "Temp-Admin"],
     "commands_path": "./commands",
-    "options": {
-        "enableImJoke": true,
-        "enableChickenButt": true
-    }
+    "interactions_path": "./interactions"
 }

@@ -1,25 +1,35 @@
 const fs = require("fs");
 const config = require("./config.json");
-const imjoke = require("./interactions/imjoke.js");
-const chickenButt = require("./interactions/chickenbutt.js");
-const atSomeone = require("./interactions/atsomeone.js");
-const hardlyKnowHer = require("./interactions/ihardlyknowher.js");
-const emojivote = require("./interactions/emojivote.js");
 const { Message } = require("discord.js");
 
 const commandPath = config.commands_path;
+const interactionPath = config.interactions_path;
 const commands = {};
-
+const interactions = [];
 //automatically reads in all of the .js from the bot's designated 'commands' directory
 //this can be customized in the config.json file.
 fs.readdir(commandPath, (err, files) => {
     if (err) {
         console.log(err);
     }
-    files.forEach(file => {
-        commands[file.substring(0, file.length - 3)] = require(commandPath + "/" + file);
-    });
+    else {
+        files.forEach(file => {
+            commands[file.substring(0, file.length - 3)] = require(commandPath + "/" + file);
+        });
+    }
 });
+
+fs.readdir(interactionPath, (err, files) => {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        files.forEach(file => {
+            interactions.push(require(interactionPath + "/" + file));
+        });
+    }
+});
+
 
 
 const prefix = config.prefix;
@@ -31,21 +41,11 @@ module.exports = (msg, client) => {
         process.exit();
     }
 
-    emojivote(msg, client);
-
-    if (msg.content.includes("@someone")) {
-        atSomeone(msg);
+    for(let i = 0 ; i < interactions.length ; i++) {
+        interactions[i](msg, client);
     }
 
-    if (config.options.enableImJoke) {
-        imjoke(msg, client);
-    }
-
-    if (config.options.enableChickenButt) {
-        chickenButt(msg, client);
-    }
-
-    hardlyKnowHer(msg);
+    // hardlyKnowHer(msg);
 
     if (!msg.content.startsWith(prefix)) { return; }
 
