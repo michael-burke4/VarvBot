@@ -30,7 +30,6 @@ fs.readdir(interactionPath, (err, files) => {
     }
 });
 
-fs.close();
 
 
 const prefix = config.prefix;
@@ -42,7 +41,7 @@ module.exports = (msg, client) => {
         process.exit();
     }
 
-    for(let i = 0 ; i < interactions.length ; i++) {
+    for (let i = 0; i < interactions.length; i++) {
         interactions[i](msg, client);
     }
 
