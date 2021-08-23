@@ -5,7 +5,7 @@ module.exports = async (msg, client) => {
         return;
     }
 
-    fs.readFile("data.json", "utf-8", (err, rawData) => {
+    fs.readFile("messagedata.json", "utf-8", (err, rawData) => {
         if (err) {
             console.log(err);
             return;
@@ -16,27 +16,28 @@ module.exports = async (msg, client) => {
         const date = new Date();
         const dateStamp = `${date.getMonth()}m${date.getFullYear()}y`;
 
+
         if (msg.author.id == client.user.id) {
-            if (data.messages[dateStamp] == null) {
-                data.messages[dateStamp] = {};
-                data.messages[dateStamp].users = 0;
-                data.messages[dateStamp].bot = 0;
+            if (data[dateStamp] == null) {
+                data[dateStamp] = {};
+                data[dateStamp].users = 0;
+                data[dateStamp].bot = 0;
             }
-            data.messages[dateStamp].bot++;
-            data.messages.lifetime.bot++;
+            data[dateStamp].bot++;
+            data.lifetime.bot++;
         }
         else {
             //ugly double code will fix eventually
-            if (data.messages[dateStamp] == null) {
-                data.messages[dateStamp] = {};
-                data.messages[dateStamp].users = 0;
-                data.messages[dateStamp].bot = 0;
+            if (data[dateStamp] == null) {
+                data[dateStamp] = {};
+                data[dateStamp].users = 0;
+                data[dateStamp].bot = 0;
             }
-            data.messages[dateStamp].users++;
-            data.messages.lifetime.users++;
+            data[dateStamp].users++;
+            data.lifetime.users++;
         }
 
-        fs.writeFile("data.json", JSON.stringify(data, null, 4), err => {
+        fs.writeFile("messagedata.json", JSON.stringify(data, null, 4), err => {
             if (err) {
                 console.log(err);
             }
