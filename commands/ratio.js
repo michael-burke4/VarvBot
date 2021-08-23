@@ -2,7 +2,7 @@ const fs = require("fs");
 
 module.exports = (msg) => {
     fs.readFile("data.json", "utf-8", (err, rawData) => {
-        if(err) {
+        if (err) {
             console.log(err);
             return;
         }

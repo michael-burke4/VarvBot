@@ -2,12 +2,12 @@ function getLastWordStripped(string) {
     let endString = '';
     let lastWord = string.substring(string.lastIndexOf(' ') + 1);
     // console.log(lastWordArray);
-    if(lastWord.length < 4) {
+    if (lastWord.length < 4) {
         return null;
     }
     let matches = lastWord.match(/\w+/g);
     matches?.forEach(str => endString += str);
-    if(endString.length < 4) {
+    if (endString.length < 4) {
         return null;
     }
     return endString;
@@ -15,8 +15,8 @@ function getLastWordStripped(string) {
 
 module.exports = (msg) => {
     const lastWord = getLastWordStripped(msg.content);
-    
-    if(lastWord == null) {
+
+    if (lastWord == null) {
         return;
     }
 
