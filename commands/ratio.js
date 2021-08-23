@@ -8,7 +8,9 @@ module.exports = (msg) => {
         }
 
         data = JSON.parse(rawData);
-        msg.channel.send(`${data.messages.bot} of the last ${data.messages.bot + data.messages.users} messages have been sent by VarvBot!`);
+        const date = new Date();
+        const dateStamp = `${date.getMonth()}m${date.getFullYear()}y`;
+        msg.channel.send(`${data.messages[dateStamp].bot} of the last ${data.messages[dateStamp].bot + data.messages[dateStamp].users} messages this month have been sent by VarvBot!`);
 
     });
 }

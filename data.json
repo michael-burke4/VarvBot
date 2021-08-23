@@ -25,7 +25,9 @@
         "I'm @Michael B whater"
     ],
     "messages": {
-        "users": 0,
-        "bot": 0
+        "lifetime": {
+            "users": 0,
+            "bot": 0
+        }
     }
 }

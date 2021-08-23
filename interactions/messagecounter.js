@@ -11,13 +11,28 @@ module.exports = async (msg, client) => {
             return;
         }
 
-        data = JSON.parse(rawData);
+        let data = JSON.parse(rawData);
+        
+        const date = new Date();
+        const dateStamp = `${date.getMonth()}m${date.getFullYear()}y`;
         
         if(msg.author.id == client.user.id){
-            data.messages.bot++;
+            if(data.messages[dateStamp] == null){
+                data.messages[dateStamp] = {};
+                data.messages[dateStamp].users = 0;
+                data.messages[dateStamp].bot = 0;
+            }
+            data.messages[dateStamp].bot++;
+            data.messages.lifetime.bot++;
         }
         else{
-            data.messages.users++;
+            if(data.messages[dateStamp] == null){
+                data.messages[dateStamp] = {};
+                data.messages[dateStamp].users = 0;
+                data.messages[dateStamp].bot = 0;
+            }
+            data.messages[dateStamp].users++;
+            data.messages.lifetime.users++;
         }
 
         fs.writeFile("data.json", JSON.stringify(data, null, 4), err => {
@@ -25,5 +40,6 @@ module.exports = async (msg, client) => {
                 console.log(err);
             }
         });
+
     });
 }
