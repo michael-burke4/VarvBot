@@ -23,5 +23,9 @@
         "Name Jeff!",
         "Not the curb!",
         "I'm @Michael B whater"
-    ]
+    ],
+    "messages": {
+        "users": 0,
+        "bot": 0
+    }
 }
