@@ -14,7 +14,7 @@ module.exports = (msg, tokens, client) => {
             msg.channel.send("Message data unavailable for this month");
             return;
         }
-        msg.channel.send(`${data[dateStamp].bot} of the last ${data[dateStamp].bot + data[dateStamp].users} messages this month have been sent by ${client.user.username}!`);
+        msg.channel.send(`${data[dateStamp].bot} of the ${data[dateStamp].bot + data[dateStamp].users} messages this month were sent by ${client.user.username}!`);
 
     });
 }
