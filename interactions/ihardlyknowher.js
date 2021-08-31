@@ -20,7 +20,7 @@ module.exports = (msg) => {
         return;
     }
 
-    if (lastWord.endsWith("er")) {
+    if (lastWord.toLowerCase().endsWith("er")) {
         msg.channel.send(`${lastWord.substring(0, lastWord.length - 2)} her? I hardly know her!`);
     }
 }
