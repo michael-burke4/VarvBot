@@ -5,5 +5,4 @@ const config = require("../config.json");
 module.exports = (msg, client) => {
     const jokeString = (/^(?:(?:i|I)(?:'?|’?)(?:m|M)|(?:(?:I|i) (?:A|a)(?:M|m)))\s(.+)$/g).exec(msg.content)?.[1];
     jokeString != null ? msg.channel.send(`Hi ${jokeString}, I'm VarvBot!`) : 0;
-
 }
