@@ -1,6 +1,5 @@
 module.exports = (msg) => {
-    const lowerCase = msg.content.toLowerCase();
-    if (lowerCase.startsWith("what ") || lowerCase == "what") {
-        msg.channel.send("Chicken Butt!");
+    if(msg.content.search(/(^what\s+|^what$)/) != -1) {
+        msg.channel.send("Chicken butt!");
     }
 }
