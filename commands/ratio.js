@@ -1,6 +1,13 @@
 const fs = require("fs");
 
 module.exports = (msg, tokens, client) => {
+    // Funny joke: 1/10 calls to !ratio result in varvbot
+    // trying to ratio the message sender.
+    if(Math.random() < .1) {
+        msg.channel.send("Ratio!");
+        return;
+    }
+
     fs.readFile("messagedata.json", "utf-8", (err, rawData) => {
         if (err) {
             console.log(err);
