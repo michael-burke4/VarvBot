@@ -6,7 +6,7 @@ module.exports = async (msg, tokens, client) => {
         return;
     }
 
-    if(tokens.length != 2) {
+    if (tokens.length != 2) {
         return;
     }
 
