@@ -10,14 +10,10 @@ module.exports = async (msg, tokens, client) => {
         return;
     }
 
-    const connection = await msg.member.voice.channel.join();
-    const dispatcher = connection.play(`sounds/${tokens[1]}.ogg`);
+    client.connection = await msg.member.voice.channel.join();
+    client.dispatcher = client.connection.play(`sounds/${tokens[1]}.ogg`);
 
 
-    dispatcher.on("finish", () => {
-        dispatcher.destroy();
-        connection.disconnect();
-    });
 
-    dispatcher.on("error", console.error);
+    client.dispatcher.on("error", console.error);
 }
