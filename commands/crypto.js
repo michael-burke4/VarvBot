@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 const { prefix } = require("../config.json");
 
 module.exports = {
-    helpString: "crypto {coin}: Check the price of a cryptocurrency!",
+    helpString: "crypto {coin}:        Check the price of a cryptocurrency!",
     fun: (msg, tokens) => {
         if (tokens.length < 2) {
             msg.channel.send("Formatted improperly, try again!");

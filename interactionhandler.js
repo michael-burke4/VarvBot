@@ -6,6 +6,9 @@ const commandPath = config.commands_path;
 const interactionPath = config.interactions_path;
 const commands = {};
 const interactions = [];
+
+let help = "```\nVarvbot has numerouse exciting features such as...\n";
+let helpRegistered = false;
 //automatically reads in all of the .js from the bot's designated 'commands' directory
 //this can be customized in the config.json file.
 fs.readdir(commandPath, (err, files) => {
@@ -15,7 +18,9 @@ fs.readdir(commandPath, (err, files) => {
     else {
         files.forEach(file => {
             commands[file.substring(0, file.length - 3)] = require(commandPath + "/" + file);
+            help += commands[file.substring(0, file.length - 3)].helpString + "\n";
         });
+        help += "```";
     }
 });
 
@@ -40,12 +45,13 @@ module.exports = (msg, client) => {
         console.log("no prefix set in config.json! Check out the readme!");
         process.exit();
     }
+    if(!helpRegistered) {
+        client.helpMsg = help;
+    }
 
     for (let i = 0; i < interactions.length; i++) {
         interactions[i](msg, client);
     }
-
-    // hardlyKnowHer(msg);
 
     if (!msg.content.startsWith(prefix)) { return; }
 

@@ -2,9 +2,9 @@
 //would take a good bit of refactoring! 
 
 module.exports = {
-    helpString: "help: asks me for help!",
-    fun: (msg) => {
-        let str = "STRING";
-        msg.channel.send(str);
+    helpString: "help:                 asks me for help!",
+    fun: (msg, tokens, client) => {
+        
+        msg.channel.send(client.helpMsg);
     }
 }

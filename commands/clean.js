@@ -4,7 +4,7 @@
 const { admin_roles } = require("../config.json");
 
 module.exports = {
-    helpString: "clean: Used by admin users to remove x amount of messages from the current channel!",
+    helpString: "clean:                Used by admin users to remove x amount of messages from the current channel!",
     fun: async (msg, tokens) => {
         const rolesArray = msg.member.roles.cache.array();
         const allowed = rolesArray.filter(role => admin_roles.includes(role.name)).length != 0;

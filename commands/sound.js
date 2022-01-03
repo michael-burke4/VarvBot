@@ -1,6 +1,6 @@
 
 module.exports = {
-    helpString: "sound {name}: Plays the specified sound in your current voice channel!",
+    helpString: "sound {name}:         Plays the specified sound in your current voice channel!",
     fun: async (msg, tokens, client) => {
 
         if (!(msg.member.voice.channel)) {

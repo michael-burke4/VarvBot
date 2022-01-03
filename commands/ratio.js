@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 module.exports = {
-    helpString: "ratio: calculates what percent of messages sent this month are from me vs from other people!",
+    helpString: "ratio:                calculates what percent of messages sent this month are from me vs from other people!",
     fun: (msg, tokens, client) => {
         // Funny joke: 1/10 calls to !ratio result in varvbot
         // trying to ratio the message sender.
