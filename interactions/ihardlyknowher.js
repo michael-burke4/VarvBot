@@ -1,27 +1,12 @@
-function getLastWordStripped(string) {
-    let endString = '';
-    let lastWord = string.substring(string.lastIndexOf(' ') + 1);
-    // console.log(lastWordArray);
-    if (lastWord.length < 4) {
-        return null;
-    }
-    let matches = lastWord.match(/\w+/g);
-    matches?.forEach(str => endString += str);
-    if (endString.length < 4) {
-        return null;
-    }
-    return endString;
-}
+const jokeRegex = /(\w\w+)er\W*$/g;
 
 module.exports = (msg) => {
-    const lastWord = getLastWordStripped(msg.content);
+    let regexMatches = jokeRegex.exec(msg.content);
 
-    if (lastWord == null) {
-        return;
+    let jokeMatch = regexMatches?.[1];
+
+    if (jokeMatch) {
+        msg.channel.send(`${jokeMatch} her? I hardly know her!`)
     }
 
-    if (lastWord.toLowerCase().endsWith("er")) {
-        msg.channel.send(`${lastWord.substring(0, lastWord.length - 2)} her? I hardly know her!`);
-    }
 }
-

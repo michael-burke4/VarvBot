@@ -3,14 +3,6 @@ const config = require("../config.json");
 //if the message starts with some variant of I am, followed by some string "...", varvbot will respond by saying
 // Hi "...", I'm VarvBot!
 module.exports = (msg, client) => {
-    const lowerCase = msg.content.toLowerCase();
-    if (lowerCase.startsWith("i'm ") || lowerCase.startsWith("i’m ")) {
-        msg.channel.send(`Hi ${msg.content.substring(4)}, I'm ${client.user.username}!`);
-    }
-    if (lowerCase.startsWith("im ")) {
-        msg.channel.send(`Hi ${msg.content.substring(3)}, I'm ${client.user.username}!`);
-    }
-    if (lowerCase.startsWith("i am ")) {
-        msg.channel.send(`Hi ${msg.content.substring(5)}, I'm ${client.user.username}!`);
-    }
+    const jokeString = (/^(?:I|i)(?: (?:a|A)(?:M|m)|(?:M|m|'m|'M|’m|’M)) +(.+)$/g).exec(msg.content)?.[1];
+    jokeString != null ? msg.channel.send(`Hi ${jokeString}, I'm VarvBot!`) : 0;
 }
