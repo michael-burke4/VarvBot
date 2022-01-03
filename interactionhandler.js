@@ -55,5 +55,5 @@ module.exports = (msg, client) => {
     const tokens = msg.content.substring(prefix.length).split(" ");
     const command = tokens[0];
 
-    commands[command]?.(msg, tokens, client);
+    commands[command]?.fun(msg, tokens, client);
 }
