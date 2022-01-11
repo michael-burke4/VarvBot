@@ -1,9 +1,8 @@
 const fs = require("fs");
 
 
-console.log(__dirname);
-
-let commands = {};
+let commandStrings = [];
+let longestName = -1;
 
 fs.readdir(__dirname, (err, files) => {
     if (err) {
@@ -12,9 +11,12 @@ fs.readdir(__dirname, (err, files) => {
     else {
         files.forEach(file => {
             let commandObj = require(`${__dirname}/${file}`);
-            // console.log(file.slice(0, -3));
-            // console.log(commandObj);
-            commands[file.slice(0,-3)] = commandObj;
+            let nameAndParams;
+            let description = commandObj.helpString;
+            nameAndParams = file.slice(0, -3);
+            commandObj.cmdParams?.forEach(param => nameAndParams += ` {${param}}`);
+            nameAndParams.length > longestName ? longestName = nameAndParams.length : null;
+            commandStrings.push({ nameAndParams, description });
         })
     }
 });
@@ -22,6 +24,9 @@ fs.readdir(__dirname, (err, files) => {
 module.exports = {
     helpString: "Asks me for help!",
     fun: (msg) => {
-        
+        let help = "```\n";
+        commandStrings.forEach(obj => help += `${obj.nameAndParams.padEnd(longestName)} : ${obj.description}\n`);
+        help += "```";
+        msg.channel.send(help);
     }
 }
