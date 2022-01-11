@@ -1,6 +1,6 @@
 //simple 'wanna ball' command
 module.exports = {
-    helpString: "ball:                 Wanna ball?",
+    helpString: "Wanna ball?",
     fun: (msg) => {
         msg.reply("Wanna ball?");
     }

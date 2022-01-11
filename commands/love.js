@@ -6,7 +6,8 @@ const { MessageEmbed } = require("discord.js");
 
 
 module.exports = {
-    helpString: "love {name1} {name2}: checks the compatability of two names!",
+    cmdParams : ["name1", "name2"],
+    helpString: "Checks the compatability of two names!",
     fun: (msg, tokens) => {
         //!love command requires 3 tokens, (!love), (name1), and (name2)
         if (tokens.length != 3) {
