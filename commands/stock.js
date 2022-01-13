@@ -5,7 +5,8 @@ const { MessageEmbed } = require("discord.js");
 
 
 module.exports = {
-    helpString: "stock {ticker}:       yields some information regarding the specified stock!",
+    params : ["ticker"],
+    description: "Yields some information regarding the specified stock!",
     fun: (msg, tokens) => {
         //yahoo finance uses a freemium plan, so I want to be able to tell when people are spamming 
         //the stock command.

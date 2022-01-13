@@ -1,6 +1,7 @@
 //Rolls a die with n sides
 module.exports = {
-    helpString: "roll {n}:             rolls an n-sided die!",
+    params : ["n"],
+    description: "Rolls an n-sided die!",
     fun: (msg, tokens) => {
         if (tokens.length != 2) {
             msg.channel.send('Formatted improperly! Try again!');

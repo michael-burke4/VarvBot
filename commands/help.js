@@ -1,10 +1,32 @@
-//currently have to define the whole help message, might try to automate the help command based off of strings stored in all the commands
-//would take a good bit of refactoring! 
+const fs = require("fs");
+
+
+let commandStrings = [];
+let longestName = -1;
+
+fs.readdir(__dirname, (err, files) => {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        files.forEach(file => {
+            let commandObj = require(`${__dirname}/${file}`);
+            let nameAndParams;
+            let description = commandObj.helpString;
+            nameAndParams = file.slice(0, -3);
+            commandObj.cmdParams?.forEach(param => nameAndParams += ` {${param}}`);
+            nameAndParams.length > longestName ? longestName = nameAndParams.length : null;
+            commandStrings.push({ nameAndParams, description });
+        })
+    }
+});
 
 module.exports = {
-    helpString: "help:                 asks me for help!",
-    fun: (msg, tokens, client) => {
-        
-        msg.channel.send(client.helpMsg);
+    description: "Asks me for help!",
+    fun: (msg) => {
+        let help = "```\n";
+        commandStrings.forEach(obj => help += `${obj.nameAndParams.padEnd(longestName)} : ${obj.description}\n`);
+        help += "```";
+        msg.channel.send(help);
     }
 }
