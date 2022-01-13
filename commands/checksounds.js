@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 module.exports = {
-    helpString: "Checks available sounds for use with the 'sound' command!",
+    description: "Checks available sounds for use with the 'sound' command!",
     fun: (msg) => {
         // TODO: Make this async
         let soundArr = fs.readdirSync("sounds");

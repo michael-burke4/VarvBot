@@ -1,7 +1,7 @@
 const { admin_roles } = require("../config.json");
 
 module.exports = {
-    helpString: "Tells the bot to stop the current emoji vote (admin only)",
+    description: "Tells the bot to stop the current emoji vote (admin only)",
     fun: (msg, tokens, client) => {
 
         //gross long line sorry

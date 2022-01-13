@@ -22,7 +22,7 @@ fs.readdir(__dirname, (err, files) => {
 });
 
 module.exports = {
-    helpString: "Asks me for help!",
+    description: "Asks me for help!",
     fun: (msg) => {
         let help = "```\n";
         commandStrings.forEach(obj => help += `${obj.nameAndParams.padEnd(longestName)} : ${obj.description}\n`);
