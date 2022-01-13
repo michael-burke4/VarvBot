@@ -12,9 +12,9 @@ fs.readdir(__dirname, (err, files) => {
         files.forEach(file => {
             let commandObj = require(`${__dirname}/${file}`);
             let nameAndParams;
-            let description = commandObj.helpString;
+            let description = commandObj.description;
             nameAndParams = file.slice(0, -3);
-            commandObj.cmdParams?.forEach(param => nameAndParams += ` {${param}}`);
+            commandObj.params?.forEach(param => nameAndParams += ` {${param}}`);
             nameAndParams.length > longestName ? longestName = nameAndParams.length : null;
             commandStrings.push({ nameAndParams, description });
         })
