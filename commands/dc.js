@@ -3,5 +3,7 @@ module.exports = {
     fun: async (msg, tokens, client) => {
         client.dispatcher.destroy();
         client.connection.disconnect();
+		client.dispatcher = null;
+		client.connection = null;
     }
 }
