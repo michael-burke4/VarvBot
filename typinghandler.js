@@ -22,7 +22,7 @@ module.exports = {
         map.set(user.id, TYPESTER);
         setTimeout(async () => {
             if(map.get(user.id)){
-                let response = `${user}, was typing and didn't send a message 😂`;
+                let response = `${user} was typing and didn't send a message 😂`;
                 channel.send(response);
             }
         }, INTERVAL);
