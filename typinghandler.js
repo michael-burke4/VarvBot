@@ -25,20 +25,20 @@ module.exports = {
 	}
 	let typeCnt = map.get(user.id)+1;
         map.set(user.id, typeCnt);
+	console.log(`${user.id} is typing message number ${typeCnt}`);
         setTimeout(async () => {
             // console.log("Wait done!");
             // console.log(map.get(user.id))
             if(map.get(user.id) == typeCnt){
-                let response = `${user}, was typing and didn't send a message 😂`;
+                let response = `${user} was typing and didn't send a message 😂`;
                 console.log(response);
 		channel.send(response);
             }
         }, INTERVAL);
     },
     typingSentHandle: (msg, client) => {
-        // console.log(`${msg.author.id} sent a message`);
-        
 	let typeCnt = map.get(msg.author.id)+1;
         map.set(msg.author.id, typeCnt);
+	console.log(`${msg.author.id} sent message number ${typeCnt-1}`);
     }
 }
