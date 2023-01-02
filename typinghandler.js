@@ -37,6 +37,9 @@ module.exports = {
         }, INTERVAL);
     },
     typingSentHandle: (msg, client) => {
+	if(!map.has(msg.author.id)){
+	    map.set(msg.author.id, 0);
+	}
 	let typeCnt = map.get(msg.author.id)+1;
         map.set(msg.author.id, typeCnt);
 	console.log(`${msg.author.id} sent message number ${typeCnt-1}`);
