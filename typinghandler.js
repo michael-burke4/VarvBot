@@ -15,7 +15,7 @@ const map = new Map();
 const TYPESTER = 1;
 const SENT = 0;
 
-const INTERVAL = 30000
+const INTERVAL = 60000
 
 module.exports = {
     typingStartHandle: (channel, user, when) => {
