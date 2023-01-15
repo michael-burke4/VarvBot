@@ -1,7 +1,8 @@
+const { enable_interactions } = require("../config.json");
 const fs = require("fs");
 
 module.exports = async (msg, client) => {
-    if (msg.guild.id != "110521954749960192") {
+    if (msg.guild.id != "110521954749960192" || !enable_interactions.hardlyknow) {
         return;
     }
 
