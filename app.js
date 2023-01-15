@@ -20,7 +20,6 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (message) => {
-    console.log("MESSAGE RECIEVED");
     interactionHandler(message, client);
 });
 

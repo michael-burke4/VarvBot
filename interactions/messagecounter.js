@@ -15,6 +15,9 @@ module.exports = async (msg, client) => {
 
         const date = new Date();
         const dateStamp = `${date.getMonth()}m${date.getFullYear()}y`;
+        if (data.lifetime == null) {
+            data.lifetime = {bot: 0, users: 0};
+        }
 
 
         if (msg.author.id == client.user.id) {
@@ -27,7 +30,6 @@ module.exports = async (msg, client) => {
             data.lifetime.bot++;
         }
         else {
-            //ugly double code will fix eventually
             if (data[dateStamp] == null) {
                 data[dateStamp] = {};
                 data[dateStamp].users = 0;
