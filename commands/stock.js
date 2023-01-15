@@ -1,7 +1,7 @@
 //Provides a bunch of data based off of a provided stock ticker. Uses the yahoo finance api on rapidapi.
 const unirest = require("unirest");
 const rapid_api_key = process.env.RAPID_API_KEY;
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 
 module.exports = {
@@ -42,7 +42,7 @@ module.exports = {
                 //varvbot finance logo.
                 const logoURL = "https://i.imgur.com/sj60vzD.png";
 
-                const stockEmbed = new MessageEmbed()
+                const stockEmbed = new EmbedBuilder()
                     .setColor("5F02D2")
                     .setTitle(res.body.price.longName)
                     .setURL(`https://finance.yahoo.com/quote/${res.body.price.symbol}`)
@@ -55,7 +55,7 @@ module.exports = {
                         { name: "Average Volume (10 day)", value: res.body.price.averageDailyVolume10Day.fmt, inline: true },
                         { name: "Beta", value: res.body.defaultKeyStatistics.beta.fmt, inline: true }
                     );
-                msg.channel.send(stockEmbed);
+                msg.channel.send({embeds: [stockEmbed]});
             } catch (err) {
                 if (err instanceof TypeError) {
                     console.log(err);

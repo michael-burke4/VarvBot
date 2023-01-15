@@ -1,6 +1,7 @@
 //Allows the user to request some market data concerning a cryptocurrency 
 const unirest = require("unirest");
-const { MessageEmbed } = require("discord.js");
+// const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require('discord.js');
 const { prefix } = require("../config.json");
 
 module.exports = {
@@ -32,9 +33,7 @@ module.exports = {
                 msg.channel.send("Encountered unexpected error. Try again later. Sorry!");
                 return;
             }
-            // FIXME: message embed constructor changed w/ discord.js package update.
-            // price api still works though.
-            const coinEmbed = new MessageEmbed()
+            const coinEmbed = new EmbedBuilder()
                 .setTitle(res.body.name)
                 .setColor("FCBA03")
                 .setThumbnail(res.body.image.small)
@@ -44,7 +43,7 @@ module.exports = {
                     { name: "24 Hour High", value: `$${res.body.market_data.high_24h.usd}`, inline: true },
                     { name: "24 Hour Low", value: `$${res.body.market_data.low_24h.usd}`, inline: true }
                 );
-            msg.channel.send(coinEmbed);
+            msg.channel.send({embeds: [coinEmbed]});
         });
     }
 }
