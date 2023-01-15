@@ -32,6 +32,8 @@ module.exports = {
                 msg.channel.send("Encountered unexpected error. Try again later. Sorry!");
                 return;
             }
+            // FIXME: message embed constructor changed w/ discord.js package update.
+            // price api still works though.
             const coinEmbed = new MessageEmbed()
                 .setTitle(res.body.name)
                 .setColor("FCBA03")

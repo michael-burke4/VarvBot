@@ -1,5 +1,3 @@
-// const Discord = require("discord.js");
-// const {Intents} = require("discord.js");
 const { Client, GatewayIntentBits } = require('discord.js');
 const interactionHandler = require("./interactionhandler.js");
 require("dotenv").config();
@@ -12,7 +10,6 @@ let client = new Client({
 		GatewayIntentBits.GuildMembers,
 	],
 });
-// client.emojiVoteActive = false;
 const key = process.env.BOT_KEY;
 
 client.on("ready", () => {
