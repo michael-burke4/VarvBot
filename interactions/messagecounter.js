@@ -19,26 +19,12 @@ module.exports = async (msg, client) => {
             data.lifetime = {bot: 0, users: 0};
         }
 
-
-        if (msg.author.id == client.user.id) {
-            if (data[dateStamp] == null) {
-                data[dateStamp] = {};
-                data[dateStamp].users = 0;
-                data[dateStamp].bot = 0;
-            }
-            data[dateStamp].bot++;
-            data.lifetime.bot++;
+        let fieldToUpdate = (msg.author.id == client.user.id) ? "bot" : "users";
+        if (data[dateStamp] == null) {
+            data[dateStamp] = {bot: 0, users: 0};
         }
-        else {
-            if (data[dateStamp] == null) {
-                data[dateStamp] = {};
-                data[dateStamp].users = 0;
-                data[dateStamp].bot = 0;
-            }
-            data[dateStamp].users++;
-            data.lifetime.users++;
-        }
-
+        data[dateStamp][fieldToUpdate] += 1;
+        data["lifetime"][fieldToUpdate] += 1;
         fs.writeFile("messagedata.json", JSON.stringify(data, null, 4), err => {
             if (err) {
                 console.log(err);
