@@ -10,6 +10,7 @@ let client = new Client({
 		GatewayIntentBits.GuildMembers,
 	],
 });
+
 const key = process.env.BOT_KEY;
 
 client.on("ready", () => {

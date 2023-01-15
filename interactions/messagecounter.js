@@ -26,6 +26,7 @@ module.exports = async (msg, client) => {
         }
         if (data.lifetime[msg.author.id].username != msg.author.username) {
             data.lifetime[msg.author.id].username = msg.author.username;
+
         }
         data.lifetime[msg.author.id].messages += 1;
 
