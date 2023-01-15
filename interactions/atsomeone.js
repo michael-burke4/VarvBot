@@ -5,13 +5,13 @@ module.exports = async (msg) => {
         return;
     }
 
-    const members = await msg.guild.members.fetch();
-    // FIXME: members.array() not a function.
-    // prob some API change w/ online members.
-    const filteredMemberArray = members.array().filter(user => user.presence.status != "offline" && user.presence.status != "dnd");
+    const presences = msg.guild.presences.cache;
+    // FIXME: not happy with this whole array solution, works for now.
+    const presences_array = presences.map(x =>  [x.userId, x.status]).filter(user => user[1] == 'online');
+
     let replaced = msg.content;
     while (replaced.includes("@someone")) {
-        replaced = replaced.replace("@someone", `${filteredMemberArray[Math.floor(filteredMemberArray.length * Math.random())].user}`);
+        replaced = replaced.replace("@someone", `<@${presences_array[Math.floor(presences_array.length * Math.random())][0]}>`);
     }
     msg.channel.send(replaced);
 }
