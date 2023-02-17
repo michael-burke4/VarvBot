@@ -12,7 +12,7 @@ module.exports = {
                 console.log(err);
                 return;
             }
-            let invite = String.parse(rawData);
+            let invite = String(rawData).trim();
             if (invite == null) {
                 msg.channel.send("Invite code unavailable!");
                 return;
