@@ -17,7 +17,7 @@ module.exports = {
                 msg.channel.send("Invite code unavailable!");
                 return;
             }
-            msg.channel.send(`Join the BGC Stardew Server with invite code: ${invite}!`);
+            msg.channel.send(`Join the BGC Stardew Server with invite code: ${invite}`);
 
         });
     }
