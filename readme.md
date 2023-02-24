@@ -56,6 +56,8 @@ VarvBot stores api keys in environment variables. In order to set these for your
 
 -RAPID_API_KEY: Varvbot uses rapid api for the love calculator and stock functions. In order to use these apis yourself, you'll need to get an api key from here: https://rapidapi.com/apidojo/api/yahoo-finance1/. If you don't feel like doing this, just delete the stock.js and love.js files from the commands folder and everything should be fine. RapidAPI uses the same key for all of its different apis, so the yahoo finance and love calculator apis work with just the one RAPID_API_KEY. Again, **DONT SHARE THIS WITH ANYONE!!!!**
 
+-STARDEW_PATH: Varvbot can give the invite code of a [Stardew Valley server](https://www.nexusmods.com/stardewvalley/mods/2677) using this directory path to the InviteCode.txt file. 
+
 # Running the Bot
 Once you have your config.json file set up and your node project has all packages installed, it should be as easy as typing 'node app.js' into your terminal/command prompt.
 
