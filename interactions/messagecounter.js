@@ -1,7 +1,8 @@
+const { enable_interactions } = require("../config.json");
 const fs = require("fs");
 
 module.exports = async (msg, client) => {
-    if (msg.guild.id != "110521954749960192") {
+    if (msg.guild.id != "110521954749960192" || !enable_interactions.hardlyknow) {
         return;
     }
 
@@ -15,33 +16,43 @@ module.exports = async (msg, client) => {
 
         const date = new Date();
         const dateStamp = `${date.getMonth()}m${date.getFullYear()}y`;
-
-
-        if (msg.author.id == client.user.id) {
-            if (data[dateStamp] == null) {
-                data[dateStamp] = {};
-                data[dateStamp].users = 0;
-                data[dateStamp].bot = 0;
-            }
-            data[dateStamp].bot++;
-            data.lifetime.bot++;
+        if (data.lifetime == null) {
+            data.lifetime = {};
         }
-        else {
-            //ugly double code will fix eventually
-            if (data[dateStamp] == null) {
-                data[dateStamp] = {};
-                data[dateStamp].users = 0;
-                data[dateStamp].bot = 0;
-            }
-            data[dateStamp].users++;
-            data.lifetime.users++;
+        if (data.lifetime[msg.author.id] == null) {
+            data.lifetime[msg.author.id] = {
+                username: msg.author.username,
+                messages: 0,
+            };
         }
+        if (data.lifetime[msg.author.id].username != msg.author.username) {
+            data.lifetime[msg.author.id].username = msg.author.username;
 
-        fs.writeFile("messagedata.json", JSON.stringify(data, null, 4), err => {
-            if (err) {
-                console.log(err);
+        }
+        data.lifetime[msg.author.id].messages += 1;
+
+        if (data[dateStamp] == null) {
+            data[dateStamp] = {};
+        }
+        if (data[dateStamp][msg.author.id] == null) {
+            data[dateStamp][msg.author.id] = {
+                username: msg.author.username,
+                messages: 0,
+            };
+        }
+        if (data[dateStamp][msg.author.id].username != msg.author.username) {
+            data[dateStamp][msg.author.id].username = msg.author.username;
+        }
+        data[dateStamp][msg.author.id].messages += 1;
+
+        fs.writeFile(
+            "messagedata.json",
+            JSON.stringify(data, null, 4),
+            (err) => {
+                if (err) {
+                    console.log(err);
+                }
             }
-        });
-
+        );
     });
-}
+};

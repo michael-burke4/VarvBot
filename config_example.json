@@ -2,5 +2,13 @@
     "prefix": "!",
     "admin_roles": ["Power", "Temp-Admin"],
     "commands_path": "./commands",
-    "interactions_path": "./interactions"
+    "interactions_path": "./interactions",
+    "enable_interactions": {
+        "atsomeone": true,
+        "chickenbutt": true,
+        "emojivote": true,
+        "hardlyknow": true,
+        "imjoke": true,
+        "messagecount": true
+    }
 }
