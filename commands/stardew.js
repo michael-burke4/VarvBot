@@ -12,7 +12,7 @@ module.exports = {
 
         const output = execSync(proc, { encoding: 'utf-8' });
 
-        serverIsUp = output.includs(appId);
+        serverIsUp = output.includes(appID);
 
         if(!serverIsUp){
             msg.channel.send(`The Stardew Valley server is currently down`);
