@@ -7,16 +7,12 @@ module.exports = {
         let stardew = process.env.STARDEW_PATH;
         let serverIsUp = false;
         let appID = "413150";
-        var exec = require('child_process').exec;
+        const execSync = require('child_process').execSync;
+        let proc = 'ps aux | grep Stardew';
 
-        exec('ps aux | grep Stardew',
-        function (error, stdout, stderr) {
-            if (error !== null) {
-                console.log('exec error: ' + error);
-                return;
-            }
-            serverIsUp = stdout.includs(appId);
-        });
+        const output = execSync(proc, { encoding: 'utf-8' });
+
+        serverIsUp = output.includs(appId);
 
         if(!serverIsUp){
             msg.channel.send(`The Stardew Valley server is currently down`);
