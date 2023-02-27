@@ -7,6 +7,7 @@ module.exports = {
         let stardew = process.env.STARDEW_PATH;
         let serverIsUp = false;
         let appID = "413150";
+        var exec = require('child_process').exec;
 
         exec('ps aux | grep Stardew',
         function (error, stdout, stderr) {
