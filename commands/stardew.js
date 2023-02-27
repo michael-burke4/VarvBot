@@ -5,14 +5,13 @@ module.exports = {
     fun: (msg, tokens, client) => {
 
         let stardew = process.env.STARDEW_PATH;
-        let serverIsUp = false;
-        let appID = "413150";
+        let appID = "413150"; // The Steam AppID for Stardew
         const execSync = require('child_process').execSync;
-        let proc = 'ps aux | grep Stardew';
+        let proc = 'ps aux | grep Stardew'; // The Linux command to check for a Stardew process
 
         const output = execSync(proc, { encoding: 'utf-8' });
 
-        serverIsUp = output.includes(appID);
+        let serverIsUp = output.includes(appID);
 
         if(!serverIsUp){
             msg.channel.send(`The Stardew Valley server is currently down`);
@@ -31,9 +30,7 @@ module.exports = {
                 return;
             }
             msg.channel.send(`The server is up! Join the BGC Stardew server with invite code: ${invite}`);
-            return;
         });
 
-        msg.channel.send('Uh oh, something went wrong');
     }
 }
