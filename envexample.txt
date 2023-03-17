@@ -1,2 +1,3 @@
 BOT_KEY=YourBotKeyHereWithNoQuotes
 RAPID_API_KEY=YourApiKeyHereWithNoQuotes
+STARDEW_PATH=PathToStardewInvite.txt
