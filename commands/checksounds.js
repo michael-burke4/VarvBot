@@ -7,8 +7,12 @@ module.exports = {
         let soundArr = fs.readdirSync("sounds");
         let reg = /^(.+)\.ogg/;
         let endMsg = "Available Sounds:\n";
-        endMsg += soundArr.reduce((prev, curr) => prev += `${reg.exec(curr)[1]}\n`, "");
-
+        for (let sound of soundArr) {
+                let name = reg.exec(sound)
+                if (name !== null) {
+                    endMsg += name[1] + "\n";
+                }
+        }
         msg.channel.send(endMsg);
     }
 }
