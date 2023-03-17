@@ -1,4 +1,5 @@
 const fs = require("fs");
+const execSync = require('child_process').execSync;
 
 module.exports = {
     description: "Gives the stardew valley invite code!",
@@ -6,7 +7,6 @@ module.exports = {
 
         let stardew = process.env.STARDEW_PATH;
         let appID = "413150"; // The Steam AppID for Stardew
-        const execSync = require('child_process').execSync;
         let proc = 'ps aux | grep Stardew'; // The Linux command to check for a Stardew process
 
         const output = execSync(proc, { encoding: 'utf-8' });
